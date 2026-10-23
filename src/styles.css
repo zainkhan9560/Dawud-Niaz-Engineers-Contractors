@@ -1,0 +1,105 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-surface: var(--surface);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.96 0.005 85);
+  --surface: oklch(0.16 0.003 85);
+  --card: oklch(0.17 0.003 85);
+  --card-foreground: oklch(0.96 0.005 85);
+  --popover: oklch(0.17 0.003 85);
+  --popover-foreground: oklch(0.96 0.005 85);
+  --gold: oklch(0.76 0.12 78);
+  --gold-soft: oklch(0.86 0.09 85);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.12 0 0);
+  --secondary: oklch(0.22 0.004 85);
+  --secondary-foreground: oklch(0.96 0.005 85);
+  --muted: oklch(0.2 0.003 85);
+  --muted-foreground: oklch(0.7 0.01 85);
+  --accent: oklch(0.22 0.004 85);
+  --accent-foreground: oklch(0.96 0.005 85);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: var(--gold);
+  --gradient-gold: linear-gradient(120deg, oklch(0.68 0.12 70), oklch(0.86 0.1 88), oklch(0.7 0.13 72));
+  --gradient-fade: linear-gradient(180deg, oklch(0.12 0 0 / 0.2), oklch(0.12 0 0 / 0.75) 60%, oklch(0.12 0 0));
+  --shadow-gold: 0 20px 60px -20px color-mix(in oklab, var(--gold) 45%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+}
+
+@utility text-gold-gradient {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility bg-gold-gradient { background: var(--gradient-gold); }
+@utility bg-fade { background: var(--gradient-fade); }
+@utility shadow-gold { box-shadow: var(--shadow-gold); }
+@utility eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+@utility clip-diagonal { clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@utility animate-rise { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@utility animate-marquee { animation: marquee 40s linear infinite; }
+
+/* Floating WhatsApp contact shortcut */
+.whatsapp-float { background: #25D366; color: #fff; }
+.whatsapp-float:hover .whatsapp-tooltip,
+.whatsapp-float:focus-visible .whatsapp-tooltip { opacity: 1; }
