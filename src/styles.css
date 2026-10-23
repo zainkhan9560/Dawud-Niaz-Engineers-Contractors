@@ -7,7 +7,7 @@
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
+  --radius-lg: calc(var(--radius) - 0px);
   --radius-xl: calc(var(--radius) + 4px);
   --font-display: "DM Serif Display", Georgia, serif;
   --font-sans: "Manrope", system-ui, sans-serif;
@@ -36,44 +36,49 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.12 0 0);
-  --foreground: oklch(0.96 0.005 85);
-  --surface: oklch(0.16 0.003 85);
-  --card: oklch(0.17 0.003 85);
-  --card-foreground: oklch(0.96 0.005 85);
-  --popover: oklch(0.17 0.003 85);
-  --popover-foreground: oklch(0.96 0.005 85);
-  --gold: oklch(0.76 0.12 78);
-  --gold-soft: oklch(0.86 0.09 85);
+  color-scheme: light;
+  --radius: 0.55rem;
+  --background: oklch(0.985 0.004 85);
+  --foreground: oklch(0.23 0.012 65);
+  --surface: oklch(0.96 0.006 82);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.23 0.012 65);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.23 0.012 65);
+  --gold: oklch(0.57 0.105 72);
+  --gold-soft: oklch(0.43 0.075 72);
   --primary: var(--gold);
-  --primary-foreground: oklch(0.12 0 0);
-  --secondary: oklch(0.22 0.004 85);
-  --secondary-foreground: oklch(0.96 0.005 85);
-  --muted: oklch(0.2 0.003 85);
-  --muted-foreground: oklch(0.7 0.01 85);
-  --accent: oklch(0.22 0.004 85);
-  --accent-foreground: oklch(0.96 0.005 85);
-  --destructive: oklch(0.6 0.22 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
+  --primary-foreground: oklch(0.99 0.002 85);
+  --secondary: oklch(0.94 0.008 82);
+  --secondary-foreground: oklch(0.23 0.012 65);
+  --muted: oklch(0.95 0.006 82);
+  --muted-foreground: oklch(0.45 0.012 65);
+  --accent: oklch(0.94 0.008 82);
+  --accent-foreground: oklch(0.23 0.012 65);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.88 0.008 82);
+  --input: oklch(0.84 0.008 82);
   --ring: var(--gold);
-  --gradient-gold: linear-gradient(120deg, oklch(0.68 0.12 70), oklch(0.86 0.1 88), oklch(0.7 0.13 72));
-  --gradient-fade: linear-gradient(180deg, oklch(0.12 0 0 / 0.2), oklch(0.12 0 0 / 0.75) 60%, oklch(0.12 0 0));
-  --shadow-gold: 0 20px 60px -20px color-mix(in oklab, var(--gold) 45%, transparent);
+  --gradient-gold: linear-gradient(120deg, oklch(0.48 0.09 68), oklch(0.68 0.11 78), oklch(0.52 0.10 70));
+  --gradient-fade: linear-gradient(180deg, oklch(0.18 0.015 65 / 0.18), oklch(0.18 0.015 65 / 0.68) 60%, oklch(0.18 0.015 65 / 0.88));
+  --shadow-gold: 0 18px 48px -24px color-mix(in oklab, var(--gold) 35%, transparent);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+  img { max-width: 100%; }
+  ::selection { background: color-mix(in oklab, var(--gold) 24%, white); color: var(--foreground); }
+  a, button, input, textarea, select { -webkit-tap-highlight-color: transparent; }
 }
 
 @utility text-gold-gradient {
@@ -87,19 +92,82 @@
 @utility shadow-gold { box-shadow: var(--shadow-gold); }
 @utility eyebrow {
   font-size: 0.72rem;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  font-weight: 600;
+  font-weight: 700;
 }
 @utility clip-diagonal { clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); }
 
-@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-@utility animate-rise { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@utility animate-rise { animation: rise 0.75s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@utility animate-fade-up { animation: fade-up 0.65s ease-out both; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @utility animate-marquee { animation: marquee 40s linear infinite; }
 
-/* Floating WhatsApp contact shortcut */
 .whatsapp-float { background: #25D366; color: #fff; }
 .whatsapp-float:hover .whatsapp-tooltip,
 .whatsapp-float:focus-visible .whatsapp-tooltip { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* Persistent light/dark theme */
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.17 0.012 65);
+  --foreground: oklch(0.93 0.008 82);
+  --surface: oklch(0.21 0.012 65);
+  --card: oklch(0.235 0.012 65);
+  --card-foreground: oklch(0.93 0.008 82);
+  --popover: oklch(0.235 0.012 65);
+  --popover-foreground: oklch(0.93 0.008 82);
+  --gold: oklch(0.72 0.12 78);
+  --gold-soft: oklch(0.66 0.10 75);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.17 0.012 65);
+  --secondary: oklch(0.29 0.012 65);
+  --secondary-foreground: oklch(0.93 0.008 82);
+  --muted: oklch(0.27 0.012 65);
+  --muted-foreground: oklch(0.72 0.012 75);
+  --accent: oklch(0.29 0.012 65);
+  --accent-foreground: oklch(0.93 0.008 82);
+  --border: oklch(0.34 0.012 65);
+  --input: oklch(0.34 0.012 65);
+  --ring: var(--gold);
+  --gradient-gold: linear-gradient(120deg, oklch(0.62 0.10 72), oklch(0.78 0.12 78), oklch(0.65 0.10 70));
+  --gradient-fade: linear-gradient(180deg, oklch(0.12 0.015 65 / 0.18), oklch(0.12 0.015 65 / 0.76) 60%, oklch(0.12 0.015 65 / 0.94));
+}
+.dark body { background-color: var(--background); color: var(--foreground); }
+.dark .from-stone-100 { --tw-gradient-from: #292724 var(--tw-gradient-from-position); --tw-gradient-to: rgb(41 39 36 / 0) var(--tw-gradient-to-position); }
+.dark .to-stone-200 { --tw-gradient-to: #39352f var(--tw-gradient-to-position); }
+.dark .bg-white { background-color: #282622; }
+.dark .text-gold { color: var(--gold); }
+
+/* Keep content cards concise and easier to scan on every page */
+.card-compact { padding: 1rem; }
+
+/* Slightly tighter cards and section spacing throughout the site */
+article > div.p-6, article .p-6 { padding: 1rem; }
+article img.h-52 { height: 11rem; }
+main > section > div.mx-auto { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+
+
+/* Clear, polished navigation treatment shared by the landing page and inner pages. */
+.site-header { box-shadow: 0 8px 26px -20px color-mix(in oklab, var(--foreground) 65%, transparent); animation: header-enter .55s cubic-bezier(.2,.7,.2,1) both; }
+.header-accent-bar { position: relative; height: 3px; width: 100%; overflow: hidden; background: color-mix(in oklab, var(--gold) 18%, transparent); }
+.header-accent-bar span { display: block; height: 100%; width: 32%; background: var(--gradient-gold); box-shadow: 0 0 16px color-mix(in oklab, var(--gold) 60%, transparent); animation: header-bar-sweep 5s ease-in-out infinite alternate; }
+.site-nav-link { position: relative; display: inline-flex; align-items: center; min-height: 2.25rem; white-space: nowrap; }
+.site-nav-link::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 2px; background: var(--gradient-gold); transition: right .28s ease; }
+.site-nav-link:hover::after, .site-nav-link:focus-visible::after { right: 0; }
+@keyframes header-enter { from { opacity: .55; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes header-bar-sweep { from { transform: translateX(-8%); } to { transform: translateX(220%); } }
+@media (prefers-reduced-motion: reduce) { .site-header, .header-accent-bar span { animation: none !important; } .site-nav-link::after { transition: none; } }

@@ -1,29 +1,32 @@
-# Welcome to your Lovable project
+# Dawud Niaz Engineers and Contractors — Website
 
-This project was built with [Lovable](https://lovable.dev).
+Responsive company website built with React, TypeScript, TanStack Router, Vite and Tailwind CSS.
 
-## Build with Lovable
+## Run locally
+1. Install Node.js (LTS).
+2. Open this folder in a terminal.
+3. Run `npm install`.
+4. Run `npm run dev`.
+5. Create a production build with `npm run build`.
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Main pages
+- `/` Home
+- `/about` About the company
+- `/services` Core services and supporting capabilities
+- `/leadership` Leadership directory
+- `/selected-projects` Project examples listed in the supplied company profile
+- `/gallery` Visual gallery
+- `/equipment` Equipment and resources
+- `/our-team` Team functions
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Client handover checklist
+- Replace illustrative gallery and project visuals with approved original site photographs.
+- Upload high-resolution portraits for leadership members whose portraits are currently placeholders.
+- Confirm all project names, clients, durations, project values, company claims and permissions before publishing.
+- Confirm contact information and domain ownership.
+- Add the production domain to Google Search Console and submit the sitemap after launch.
 
-## Development
+Images labelled illustrative are examples, not a claim that the exact pictured site belongs to the company. Roads and highway projects are excluded from the website's service list as requested.
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+Recent update: the Equipment page now uses the three supplied construction/equipment photographs, with responsive image crops and animated cards. Navigation headers include an animated gold accent bar and hover underline; reduced-motion preferences are respected.
