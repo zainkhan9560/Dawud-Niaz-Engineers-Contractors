@@ -1,14 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Globe,
-  Check,
-  ArrowRight,
-  Quote,
-} from "lucide-react";
+import { MapPin, Phone, Mail, Globe, Check, ArrowRight, Quote } from "lucide-react";
 
 import logo from "@/assets/dawud-niaz-company-logo.webp";
 import SiteHeader from "@/components/SiteHeader";
@@ -19,7 +11,7 @@ import { siteVideos } from "@/content/videos";
 import { services as servicePages, servicePath } from "@/content/services";
 import { MAPS_EMBED_URL, REVIEW_LINK, SITE_NAME, businessLd, pageHead, websiteLd } from "@/lib/seo";
 import hero from "@/assets/building-construction-hero.webp";
-import ceo from "@/assets/engr-muhammad-aun-niaz-profile.webp";
+import ceo from "@/assets/ceo-aun-niaz-office.webp";
 import saqib from "@/assets/saqib-niaz.webp";
 import shafqat from "@/assets/shafqat-niaz.webp";
 import aliFaisal from "@/assets/ali-faisal-legal-advisor.webp";
@@ -27,6 +19,8 @@ import siteInspection1 from "@/assets/construction-site-review-team.webp";
 import siteInspection2 from "@/assets/structural-site-inspection-team.webp";
 import architectureStudio from "@/assets/architectural-drawing-workspace.webp";
 import houseTransformation from "@/assets/residential-house-transformation.webp";
+import heroAnalysisModel from "@/assets/hero-structural-analysis-model.webp";
+import heroColumnSite from "@/assets/hero-column-reinforcement-site.webp";
 import renovationImg from "@/assets/house-renovation-before-after.webp";
 import svcResidential from "@/assets/residential-building-example.webp";
 import svcCivil from "@/assets/structural-building-works.webp";
@@ -60,7 +54,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const HERO_SLIDE_INTERVAL_MS = 6000;
+const HERO_SLIDE_INTERVAL_MS = 3200;
 
 const heroSlides = [
   {
@@ -76,6 +70,16 @@ const heroSlides = [
   {
     src: projectScaffolding,
     alt: "Building contractor in Lahore: scaffolding on a multi-storey building",
+    pos: "50% 55%",
+  },
+  {
+    src: heroAnalysisModel,
+    alt: "Structural engineer in Lahore: 3D structural analysis model of a multi-storey RCC frame",
+    pos: "50% 50%",
+  },
+  {
+    src: heroColumnSite,
+    alt: "Grey structure in Lahore: column reinforcement and slab steel at a construction site",
     pos: "50% 55%",
   },
 ];
@@ -116,7 +120,7 @@ function HeroSlider() {
           fetchPriority={i === 0 ? "high" : "auto"}
           decoding="async"
           style={{ objectPosition: slide.pos }}
-          className={`animate-kenburns absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-in-out motion-reduce:transition-none ${
+          className={`animate-kenburns absolute inset-0 h-full w-full object-cover transition-opacity duration-[800ms] ease-in-out motion-reduce:transition-none ${
             i === active ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -350,7 +354,8 @@ function Index() {
               id="hero-heading"
               className="animate-rise text-3xl leading-[1.05] [animation-delay:120ms] sm:text-4xl lg:text-5xl"
             >
-              We Don't Just Build Structures, We Build Futures in <span className="text-gold-gradient">Lahore</span>
+              We Don't Just Build Structures, We Build Futures in{" "}
+              <span className="text-gold-gradient">Lahore</span>
             </h1>
             <p className="animate-rise mt-3 max-w-sm text-sm text-foreground/85 [animation-delay:220ms] sm:text-base">
               Engineering ideas. Building with purpose: design, estimation and construction for
@@ -452,9 +457,9 @@ function Index() {
             <div>
               <h2 className="text-2xl md:text-3xl">Construction services in Lahore</h2>
               <p className="mt-3 text-muted-foreground">
-                From the first house map to the final handover, our architects, structural
-                engineers and civil engineers support homeowners, developers and businesses with
-                design, cost planning and building work across Lahore.
+                From the first house map to the final handover, our architects, structural engineers
+                and civil engineers support homeowners, developers and businesses with design, cost
+                planning and building work across Lahore.
               </p>
             </div>
             <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
@@ -485,7 +490,8 @@ function Index() {
               alt="Engr. Muhammad Aun Niaz, CEO"
               loading="lazy"
               decoding="async"
-              className="relative aspect-[4/5] w-full object-cover object-top shadow-md"
+              style={{ objectPosition: "68% 25%" }}
+              className="relative aspect-[4/5] w-full object-cover shadow-md"
             />
           </div>
           <div data-reveal="right">
@@ -502,8 +508,8 @@ function Index() {
             <Quote className="mt-10 h-10 w-10 text-gold" />
             <blockquote className="mt-4 space-y-4 font-display text-2xl leading-snug text-foreground/90">
               <p>
-                At Dawud Niaz Associates Engineers and Contractors our objective is to combine engineering
-                knowledge with disciplined project execution.
+                At Dawud Niaz Associates Engineers and Contractors our objective is to combine
+                engineering knowledge with disciplined project execution.
               </p>
               <p className="text-lg font-sans leading-relaxed text-muted-foreground">
                 We focus on understanding each project's technical requirements and delivering
@@ -752,9 +758,9 @@ function Index() {
             <SectionHead eyebrow="About Us" title="Building with" accent="engineering precision." />
             <div className="space-y-5 text-lg text-muted-foreground">
               <p>
-                Dawud Niaz Associates Engineers and Contractors is a construction company in Lahore providing
-                focused building services for homeowners, property developers and businesses in
-                Lahore and across Pakistan.
+                Dawud Niaz Associates Engineers and Contractors is a construction company in Lahore
+                providing focused building services for homeowners, property developers and
+                businesses in Lahore and across Pakistan.
               </p>
               <p>
                 Our core services include architectural design, structural engineering, house map
@@ -916,7 +922,8 @@ function Index() {
             className="h-20 w-auto"
           />
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Dawud Niaz Associates Engineers and Contractors. All rights reserved.
+            © {new Date().getFullYear()} Dawud Niaz Associates Engineers and Contractors. All rights
+            reserved.
           </p>
         </div>
       </footer>

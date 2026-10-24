@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import Markdown from "@/components/Markdown";
-import { formatDate, getPost, relatedPosts } from "@/lib/blog";
+import { getPost, relatedPosts } from "@/lib/blog";
 import { BUSINESS_ID, SITE_NAME, absoluteUrl, breadcrumbLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -56,7 +56,7 @@ function BlogPostPage() {
   const related = relatedPosts(post.slug, post.category);
   return (
     <CompanyPageShell
-      eyebrow={`${post.category} · ${formatDate(post.date)} · ${post.readingMinutes} min read`}
+      eyebrow={`${post.category} · ${post.readingMinutes} min read`}
       title={post.title}
       intro={post.description}
     >
@@ -70,10 +70,7 @@ function BlogPostPage() {
           />
         )}
         <Markdown source={post.body} />
-        <p className="mt-10 text-sm text-muted-foreground">
-          Published by {post.author}
-          {post.updated ? ` · Updated ${formatDate(post.updated)}` : ""}
-        </p>
+        <p className="mt-10 text-sm text-muted-foreground">Published by {post.author}</p>
         <div className="mt-10 flex flex-col gap-4 bg-surface p-7 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-2xl">Planning a project in Lahore?</h2>

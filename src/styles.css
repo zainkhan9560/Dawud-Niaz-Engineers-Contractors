@@ -564,7 +564,7 @@ main > section > div.mx-auto {
 }
 
 @utility animate-kenburns {
-  animation: kenburns 22s ease-in-out infinite alternate;
+  animation: kenburns 9s ease-in-out infinite alternate;
 }
 @utility animate-float {
   animation: float-y 6s ease-in-out infinite;

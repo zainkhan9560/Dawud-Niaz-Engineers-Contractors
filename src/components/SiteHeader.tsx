@@ -122,77 +122,76 @@ export default function SiteHeader() {
           aria-label="Main"
         >
           <div className="flex flex-1 items-center justify-center gap-5 xl:gap-8">
-          <div className="group relative">
-            <Link to="/services" className={`${desktopLink} gap-1`}>
-              Services
-              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
-            </Link>
-            <div className={dropdownPanel}>
-              <div className="border border-border bg-card p-2 shadow-2xl">
-                {servicePages.map((x) => (
+            <div className="group relative">
+              <Link to="/services" className={`${desktopLink} gap-1`}>
+                Services
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
+              </Link>
+              <div className={dropdownPanel}>
+                <div className="border border-border bg-card p-2 shadow-2xl">
+                  {servicePages.map((x) => (
+                    <Link
+                      key={x.slug}
+                      to="/services/$slug"
+                      params={{ slug: x.slug }}
+                      className={dropdownItem}
+                    >
+                      {x.name}
+                    </Link>
+                  ))}
                   <Link
-                    key={x.slug}
-                    to="/services/$slug"
-                    params={{ slug: x.slug }}
+                    to="/services"
+                    className="mt-1 block border-t border-border px-4 py-2.5 text-sm font-semibold text-gold hover:underline"
+                  >
+                    View all services →
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <Link to="/selected-projects" className={desktopLink}>
+              Projects
+            </Link>
+
+            <div className="group relative">
+              <button type="button" className={`${desktopLink} gap-1`} aria-haspopup="true">
+                Company
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
+              </button>
+              <div className={dropdownPanel}>
+                <div className="border border-border bg-card p-2 shadow-2xl">
+                  {companyMenu.map((m) => (
+                    <Link key={m.to} to={m.to} className={dropdownItem}>
+                      {m.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative">
+              <button type="button" className={`${desktopLink} gap-1`} aria-haspopup="true">
+                Resources
+                <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
+              </button>
+              <div className={dropdownPanel}>
+                <div className="border border-border bg-card p-2 shadow-2xl">
+                  {resourcesMenu.map((m) => (
+                    <Link key={m.to} to={m.to} className={dropdownItem}>
+                      {m.label}
+                    </Link>
+                  ))}
+                  <a
+                    href={BROCHURE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={dropdownItem}
                   >
-                    {x.name}
-                  </Link>
-                ))}
-                <Link
-                  to="/services"
-                  className="mt-1 block border-t border-border px-4 py-2.5 text-sm font-semibold text-gold hover:underline"
-                >
-                  View all services →
-                </Link>
+                    Company Brochure (PDF)
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <Link to="/selected-projects" className={desktopLink}>
-            Projects
-          </Link>
-
-          <div className="group relative">
-            <button type="button" className={`${desktopLink} gap-1`} aria-haspopup="true">
-              Company
-              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
-            </button>
-            <div className={dropdownPanel}>
-              <div className="border border-border bg-card p-2 shadow-2xl">
-                {companyMenu.map((m) => (
-                  <Link key={m.to} to={m.to} className={dropdownItem}>
-                    {m.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="group relative">
-            <button type="button" className={`${desktopLink} gap-1`} aria-haspopup="true">
-              Resources
-              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
-            </button>
-            <div className={dropdownPanel}>
-              <div className="border border-border bg-card p-2 shadow-2xl">
-                {resourcesMenu.map((m) => (
-                  <Link key={m.to} to={m.to} className={dropdownItem}>
-                    {m.label}
-                  </Link>
-                ))}
-                <a
-                  href={BROCHURE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={dropdownItem}
-                >
-                  Company Brochure (PDF)
-                </a>
-              </div>
-            </div>
-          </div>
-
           </div>
 
           {/* Right side of the menu: About Us, then Contact Us as the last item */}
@@ -383,4 +382,3 @@ export default function SiteHeader() {
     </header>
   );
 }
-

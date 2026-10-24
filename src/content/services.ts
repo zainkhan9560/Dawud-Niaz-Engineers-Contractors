@@ -358,7 +358,8 @@ export const services: ServicePage[] = [
     intro:
       "Renovation is harder than new construction because every building hides surprises. We start with a survey, plan the work in phases and carry out civil modifications and finishing for houses, offices and bank branches.",
     image: renovation,
-    imageAlt: "House renovation in Lahore: before and after, from plaster removal to finished exterior",
+    imageAlt:
+      "House renovation in Lahore: before and after, from plaster removal to finished exterior",
     includes: [
       "Survey and condition assessment",
       "Removal of existing fixtures and partitions",

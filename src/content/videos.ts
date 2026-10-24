@@ -39,12 +39,20 @@ export const siteVideos: SiteVideo[] = [
   },
 ];
 
+const [excavation, slabSteel, brickwork, plotArea, delivery] = siteVideos as [
+  SiteVideo,
+  SiteVideo,
+  SiteVideo,
+  SiteVideo,
+  SiteVideo,
+];
+
 /** Which site video suits which service page. */
 export const serviceVideos: Record<string, SiteVideo> = {
-  "grey-structure-construction-lahore": siteVideos[1],
-  "house-construction-lahore": siteVideos[2],
-  "structural-drawings-lahore": siteVideos[1],
-  "building-construction-lahore": siteVideos[0],
-  "turnkey-construction-lahore": siteVideos[4],
-  "construction-consultancy-lahore": siteVideos[3],
+  "grey-structure-construction-lahore": slabSteel,
+  "house-construction-lahore": brickwork,
+  "structural-drawings-lahore": slabSteel,
+  "building-construction-lahore": excavation,
+  "turnkey-construction-lahore": delivery,
+  "construction-consultancy-lahore": plotArea,
 };

@@ -26,7 +26,8 @@ export const GOOGLE_SITE_VERIFICATION = "";
  *  - GOOGLE_BUSINESS_PROFILE_URL: the "Share profile" link (https://maps.app.goo.gl/... or https://g.page/...)
  *  - GOOGLE_REVIEW_URL: the "Ask for reviews" link (https://g.page/r/.../review)
  */
-export const GOOGLE_BUSINESS_PROFILE_URL = "https://www.google.com/search?sca_esv=a3f5dec736f5e351&sxsrf=APpeQnukmIZ8eePlWbEQak8PdUU7FJB1bw%3A1792593835918&q=Dawud%20Niaz%20Engineers%20%26%20Contractors&stick=H4sIAAAAAAAAAONgU1I1qEi0MDVKTjZMMbY0MkoySkuyMqgwTE1KM7I0SjRLSjM1NUy2XMSq5JJYXpqi4JeZWKXgmpeemZeaWlSsoKbgnJ9XUpSYXJJfVAwAEI9eH04AAAA&mat=Cf8FqEKAVwzt&ved=2ahUKEwjqycO2rMuXAxUtUaQEHb50K8QQrMcEegQIPxAC";
+export const GOOGLE_BUSINESS_PROFILE_URL =
+  "https://www.google.com/search?sca_esv=a3f5dec736f5e351&sxsrf=APpeQnukmIZ8eePlWbEQak8PdUU7FJB1bw%3A1792593835918&q=Dawud%20Niaz%20Engineers%20%26%20Contractors&stick=H4sIAAAAAAAAAONgU1I1qEi0MDVKTjZMMbY0MkoySkuyMqgwTE1KM7I0SjRLSjM1NUy2XMSq5JJYXpqi4JeZWKXgmpeemZeaWlSsoKbgnJ9XUpSYXJJfVAwAEI9eH04AAAA&mat=Cf8FqEKAVwzt&ved=2ahUKEwjqycO2rMuXAxUtUaQEHb50K8QQrMcEegQIPxAC";
 export const GOOGLE_REVIEW_URL = "https://g.page/r/CclR9WsqKb8eEBM/review";
 
 export const SOCIAL_PROFILES: string[] = [

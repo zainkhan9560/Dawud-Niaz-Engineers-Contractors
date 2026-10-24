@@ -48,7 +48,7 @@ Walk through the building with your contractor and make a list of any items that
 - Make sure someone qualified checks the work regularly.
 - Ask before changing the plan during construction, because changes affect cost and time.
 
-If you are comparing builders, our guide on [choosing a construction contractor](/blog/how-to-choose-a-construction-contractor-in-lahore) lists questions worth asking.
+If you are comparing builders, ask each one for a written scope, a bill of quantities and a clear payment schedule so the quotations can be compared fairly.
 
 ## Next step
 

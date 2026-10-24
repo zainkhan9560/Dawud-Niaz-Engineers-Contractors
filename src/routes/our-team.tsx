@@ -3,6 +3,7 @@ import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import ceo from "@/assets/engr-muhammad-aun-niaz-profile.webp";
 import site from "@/assets/structural-site-inspection-team.webp";
+import engineeringTeam from "@/assets/engineering-technical-team.webp";
 export const Route = createFileRoute("/our-team")({
   head: () =>
     pageHead({
@@ -49,13 +50,15 @@ function TeamPage() {
           <article key={g.title} className="border border-border bg-card">
             <img
               decoding="async"
-              src={i === 0 ? ceo : site}
+              src={i === 0 ? ceo : i === 1 ? engineeringTeam : site}
               alt={
                 i === 0
                   ? "Company leadership portrait"
-                  : "Construction site team, illustrative image"
+                  : i === 1
+                    ? "Engineering and technical team: civil engineers, site engineers, architects, quantity surveyors and QA/QC support"
+                    : "Construction site team, illustrative image"
               }
-              className="h-52 w-full object-cover object-top"
+              className="aspect-[3/2] w-full object-cover object-top"
               loading="lazy"
             />
             <div className="p-6">

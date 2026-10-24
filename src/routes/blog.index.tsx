@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import CompanyPageShell from "@/components/CompanyPageShell";
-import { formatDate, posts } from "@/lib/blog";
+import { posts } from "@/lib/blog";
 import blogCover from "@/assets/project-building-structure.webp";
 import { breadcrumbLd, pageHead } from "@/lib/seo";
 
@@ -77,7 +77,7 @@ function BlogIndex() {
               )}
               <div className="flex flex-1 flex-col p-6">
                 <p className="text-xs text-muted-foreground">
-                  {post.category} · {formatDate(post.date)} · {post.readingMinutes} min read
+                  {post.category} · {post.readingMinutes} min read
                 </p>
                 <h2 className="mt-2 text-xl leading-snug">
                   <Link

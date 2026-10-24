@@ -106,7 +106,9 @@ function ServicesPage() {
               i === 4 ? "md:col-span-2 md:grid md:grid-cols-2" : ""
             }`}
           >
-            <div className={`overflow-hidden ${i === 4 ? "aspect-[16/9] md:aspect-auto" : "aspect-[16/9]"}`}>
+            <div
+              className={`overflow-hidden ${i === 4 ? "aspect-[16/9] md:aspect-auto" : "aspect-[16/9]"}`}
+            >
               <img
                 decoding="async"
                 src={s.img}
