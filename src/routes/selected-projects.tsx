@@ -6,6 +6,7 @@ import { X, ZoomIn } from "lucide-react";
 import CompanyPageShell from "@/components/CompanyPageShell";
 
 import bank from "@/assets/project-meezan-bank-branch.webp";
+<<<<<<< HEAD
 import hbl from "@/assets/project-hbl-branch-upgradation.webp";
 import warehouse from "@/assets/project-industrial-warehouse.webp";
 import plazaPhoto from "@/assets/project-commercial-plaza.webp";
@@ -13,6 +14,21 @@ import alfalah from "@/assets/project-alfalah-bank-branch.webp";
 import villa from "@/assets/residential-house-transformation.webp";
 import site from "@/assets/construction-site-review-team.webp";
 import mcb from "@/assets/project-mcb-bank-branch.webp";
+=======
+import bankThumb from "@/assets/project-meezan-bank-branch-thumb.webp";
+import hbl from "@/assets/project-hbl-branch-upgradation.webp";
+import hblThumb from "@/assets/project-hbl-branch-upgradation-thumb.webp";
+import warehouse from "@/assets/project-industrial-warehouse.webp";
+import warehouseThumb from "@/assets/project-industrial-warehouse-thumb.webp";
+import plazaPhoto from "@/assets/project-commercial-plaza.webp";
+import plazaThumb from "@/assets/project-commercial-plaza-thumb.webp";
+import alfalah from "@/assets/project-alfalah-bank-branch.webp";
+import alfalahThumb from "@/assets/project-alfalah-bank-branch-thumb.webp";
+import villa from "@/assets/residential-house-transformation.webp";
+import site from "@/assets/construction-site-review-team.webp";
+import mcb from "@/assets/project-mcb-bank-branch.webp";
+import mcbThumb from "@/assets/project-mcb-bank-branch-thumb.webp";
+>>>>>>> e99da09 (updated pictures or files)
 
 export const Route = createFileRoute("/selected-projects")({
   head: () => ({
@@ -36,6 +52,11 @@ type Project = {
   duration: string;
   value: string;
   img: string;
+<<<<<<< HEAD
+=======
+  /** smaller version shown in the card; the full image opens in the lightbox */
+  thumb?: string;
+>>>>>>> e99da09 (updated pictures or files)
   pos?: string;
 };
 
@@ -51,6 +72,10 @@ const projects: Project[] = [
     duration: "3 months",
     value: "PKR 32 million",
     img: bank,
+<<<<<<< HEAD
+=======
+    thumb: bankThumb,
+>>>>>>> e99da09 (updated pictures or files)
     pos: "50% 0%",
   },
   {
@@ -59,6 +84,10 @@ const projects: Project[] = [
     duration: "2.5 months",
     value: "PKR 24 million",
     img: alfalah,
+<<<<<<< HEAD
+=======
+    thumb: alfalahThumb,
+>>>>>>> e99da09 (updated pictures or files)
   },
   {
     name: "MCB Bank — Commercial Branch Works",
@@ -66,6 +95,10 @@ const projects: Project[] = [
     duration: "3 months",
     value: "PKR 28 million",
     img: mcb,
+<<<<<<< HEAD
+=======
+    thumb: mcbThumb,
+>>>>>>> e99da09 (updated pictures or files)
   },
   {
     name: "HBL Office & Branch Upgradation",
@@ -73,6 +106,10 @@ const projects: Project[] = [
     duration: "3 months",
     value: "PKR 35 million",
     img: hbl,
+<<<<<<< HEAD
+=======
+    thumb: hblThumb,
+>>>>>>> e99da09 (updated pictures or files)
   },
   {
     name: "Industrial Warehouse Development",
@@ -80,6 +117,10 @@ const projects: Project[] = [
     duration: "7 months",
     value: "PKR 145 million",
     img: warehouse,
+<<<<<<< HEAD
+=======
+    thumb: warehouseThumb,
+>>>>>>> e99da09 (updated pictures or files)
   },
   {
     name: "Commercial Plaza Development",
@@ -87,6 +128,10 @@ const projects: Project[] = [
     duration: "10 months",
     value: "PKR 190 million",
     img: plazaPhoto,
+<<<<<<< HEAD
+=======
+    thumb: plazaThumb,
+>>>>>>> e99da09 (updated pictures or files)
   },
   {
     name: "Corporate Office Development",
@@ -180,6 +225,12 @@ function ProjectsPage() {
           <article key={project.name} className="overflow-hidden border border-border bg-card">
             <button
               type="button"
+<<<<<<< HEAD
+=======
+              onPointerEnter={() => {
+                new Image().src = project.img;
+              }}
+>>>>>>> e99da09 (updated pictures or files)
               onClick={() =>
                 setActiveImage({
                   src: project.img,
@@ -190,7 +241,11 @@ function ProjectsPage() {
               className="group relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden"
             >
               <img
+<<<<<<< HEAD
                 src={project.img}
+=======
+                src={project.thumb ?? project.img}
+>>>>>>> e99da09 (updated pictures or files)
                 alt={`${project.name} — illustrative project image`}
                 loading="lazy"
                 decoding="async"
