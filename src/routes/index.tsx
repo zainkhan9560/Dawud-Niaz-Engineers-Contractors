@@ -651,7 +651,7 @@ function Index() {
           <SectionHead
             eyebrow="From Our Sites"
             title="Construction work in progress"
-            accent="across Lahore."
+            accent="across Pakistan."
           />
           <p className="-mt-3 mb-6 max-w-3xl text-muted-foreground">
             Short, silent clips from active building sites: earthworks, slab reinforcement,
