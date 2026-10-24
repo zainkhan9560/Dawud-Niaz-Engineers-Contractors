@@ -9,6 +9,20 @@ Responsive company website built with React, TypeScript, TanStack Router, Vite a
 4. Run `npm run dev`.
 5. Create a production build with `npm run build`.
 
+## Project structure
+```
+.
+├── public/             Favicons, web manifest, robots.txt (served as-is)
+└── src/
+    ├── assets/         Optimised WebP images (one file per picture)
+    ├── components/     Shared UI: CompanyPageShell, ThemeToggle, FloatingActions, ScrollReveal
+    ├── routes/         One file per page (index, about, services, leadership, selected-projects, ...)
+    ├── hooks/ lib/     Small helpers
+    ├── test/           Routing tests
+    └── styles.css      Theme, animations and global styles
+```
+To add a photo: save it as an optimised `.webp` (about 1100-1300px wide) in `src/assets/` and import it from the page.
+
 ## Main pages
 - `/` Home
 - `/about` About the company

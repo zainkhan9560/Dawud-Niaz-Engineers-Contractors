@@ -1,23 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Menu, X, MapPin, Phone, Mail, Globe, Check, ArrowRight, Quote, Calculator } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import {
+  Menu,
+  X,
+  MapPin,
+  Phone,
+  Mail,
+  Globe,
+  Check,
+  ArrowRight,
+  Quote,
+  Calculator,
+} from "lucide-react";
 
-import logo from "@/assets/dawud-niaz-company-logo.png";
-import logoMark from "@/assets/dawud-niaz-logo-mark.png";
+import logo from "@/assets/dawud-niaz-company-logo.webp";
+import logoMark from "@/assets/dawud-niaz-logo-mark.webp";
 import ThemeToggle from "@/components/ThemeToggle";
-import hero from "@/assets/building-construction-hero.jpg";
-import ceo from "@/assets/engr-muhammad-aun-niaz-profile.jpg";
-import siteInspection1 from "@/assets/construction-site-review-team.jpeg";
-import siteInspection2 from "@/assets/structural-site-inspection-team.jpeg";
-import architectureStudio from "@/assets/architectural-drawing-workspace.jpeg";
-import houseTransformation from "@/assets/residential-house-transformation.jpeg";
-import svcResidential from "@/assets/residential-building-example.jpg";
-import svcCivil from "@/assets/structural-building-works.jpg";
-import svcDesign from "@/assets/architectural-design-example.jpg";
-import svcManagement from "@/assets/construction-planning-example.jpg";
+import hero from "@/assets/building-construction-hero.webp";
+import ceo from "@/assets/engr-muhammad-aun-niaz-profile.webp";
+import saqib from "@/assets/saqib-niaz.webp";
+import shafqat from "@/assets/shafqat-niaz.webp";
+import aliFaisal from "@/assets/ali-faisal-legal-advisor.webp";
+import siteInspection1 from "@/assets/construction-site-review-team.webp";
+import siteInspection2 from "@/assets/structural-site-inspection-team.webp";
+import architectureStudio from "@/assets/architectural-drawing-workspace.webp";
+import houseTransformation from "@/assets/residential-house-transformation.webp";
+import svcResidential from "@/assets/residential-building-example.webp";
+import svcCivil from "@/assets/structural-building-works.webp";
+import svcDesign from "@/assets/architectural-design-example.webp";
+import svcManagement from "@/assets/construction-planning-example.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [{ rel: "preload", as: "image", href: hero, type: "image/webp" }],
     meta: [
       { title: "Dawud Niaz Engineers and Contractors | Construction & Design in Lahore" },
       {
@@ -25,14 +40,22 @@ export const Route = createFileRoute("/")({
         content:
           "Dawud Niaz Engineers and Contractors provides architectural drawings, structural drawings, construction cost estimation and building construction services in Lahore, Pakistan.",
       },
-      { property: "og:title", content: "Dawud Niaz Engineers and Contractors — Engineering Ideas. Building with Purpose." },
+      {
+        property: "og:title",
+        content: "Dawud Niaz Engineers and Contractors — Engineering Ideas. Building with Purpose.",
+      },
       {
         property: "og:description",
-        content: "Architectural planning, structural drawings, construction cost estimation and residential and commercial building construction in Lahore, Pakistan.",
+        content:
+          "Architectural planning, structural drawings, construction cost estimation and residential and commercial building construction in Lahore, Pakistan.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "keywords", content: "architectural drawings Lahore, structural drawings Lahore, construction cost estimation Pakistan, house construction Lahore, apartment construction, Dawud Niaz Engineers and Contractors" },
+      {
+        name: "keywords",
+        content:
+          "architectural drawings Lahore, structural drawings Lahore, construction cost estimation Pakistan, house construction Lahore, apartment construction, Dawud Niaz Engineers and Contractors",
+      },
       { name: "robots", content: "index, follow, max-image-preview:large" },
     ],
   }),
@@ -40,32 +63,145 @@ export const Route = createFileRoute("/")({
 });
 
 const nav = [
-  ["About", "/about"], ["Services", "/services"], ["Leadership", "/leadership"],
-  ["Selected Projects", "/selected-projects"], ["Gallery", "/gallery"],
-  ["Equipment", "/equipment"], ["Our Team", "/our-team"], ["Cost Calculator", "#cost-calculator"], ["Contact", "#contact"],
+  ["About", "/about"],
+  ["Services", "/services"],
+  ["Leadership", "/leadership"],
+  ["Selected Projects", "/selected-projects"],
+  ["Gallery", "/gallery"],
+  ["Equipment", "/equipment"],
+  ["Our Team", "/our-team"],
+  ["Cost Calculator", "#cost-calculator"],
+  ["Contact", "#contact"],
 ];
 
+const marqueeItems = [
+  "Architectural Drawings",
+  "Structural Drawings",
+  "Cost Estimation",
+  "Building Construction",
+  "Residential",
+  "Commercial",
+  "Industrial",
+  "Lahore, Pakistan",
+];
+
+function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [value, setValue] = useState(to);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setValue(0);
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min(1, (now - start) / 1600);
+          setValue(Math.round(to * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [to]);
+  return (
+    <span ref={ref}>
+      {value}
+      {suffix}
+    </span>
+  );
+}
+
 const services = [
-  { t: "Architectural Drawings", d: "Thoughtful floor plans, elevations, space planning and architectural drawing sets for houses, apartments and commercial buildings.", img: svcDesign },
-  { t: "Structural Drawings", d: "Building structure drawing coordination for foundations, columns, beams, slabs and reinforced concrete elements, developed to project requirements.", img: svcCivil },
-  { t: "Construction Cost Estimation", d: "Preliminary quantities and cost estimates to help clients understand expected materials, labour and construction budgets before work begins.", img: svcManagement },
-  { t: "Building Construction", d: "Planned construction for houses, apartments and commercial buildings, with attention to workmanship, coordination, site safety and quality.", img: svcResidential },
+  {
+    t: "Architectural Drawings",
+    d: "Thoughtful floor plans, elevations, space planning and architectural drawing sets for houses, apartments and commercial buildings.",
+    img: svcDesign,
+  },
+  {
+    t: "Structural Drawings",
+    d: "Building structure drawing coordination for foundations, columns, beams, slabs and reinforced concrete elements, developed to project requirements.",
+    img: svcCivil,
+  },
+  {
+    t: "Construction Cost Estimation",
+    d: "Preliminary quantities and cost estimates to help clients understand expected materials, labour and construction budgets before work begins.",
+    img: svcManagement,
+  },
+  {
+    t: "Building Construction",
+    d: "Planned construction for houses, apartments and commercial buildings, with attention to workmanship, coordination, site safety and quality.",
+    img: svcResidential,
+  },
 ];
 
 const team = [
-  { n: "Engr. Muhammad Aun Niaz", r: "CEO", img: ceo, imageAlt: "Engr. Muhammad Aun Niaz at his office" },
-  { n: "Saqib Niaz", r: "Managing Director", img: null, imageAlt: "Portrait pending" },
-  { n: "Shafqat Niaz", r: "Head of Marketing", img: null, imageAlt: "Portrait pending" },
-  { n: "Ali Faisal Kalu", r: "Legal Advisor", img: null, imageAlt: "Portrait pending" },
+  {
+    n: "Engr. Muhammad Aun Niaz",
+    r: "CEO",
+    img: ceo,
+    imageAlt: "Engr. Muhammad Aun Niaz at his office",
+    pos: "60% 20%",
+  },
+  {
+    n: "Saqib Niaz",
+    r: "Managing Director",
+    img: saqib,
+    imageAlt: "Saqib Niaz, Managing Director",
+    pos: "55% 25%",
+  },
+  {
+    n: "Shafqat Niaz",
+    r: "Head of Marketing",
+    img: shafqat,
+    imageAlt: "Shafqat Niaz, Head of Marketing",
+    pos: "50% 25%",
+  },
+  {
+    n: "Ali Faisal Kalu",
+    r: "Legal Advisor",
+    img: aliFaisal,
+    imageAlt: "Ali Faisal Kalu, Legal Advisor",
+    pos: "60% 20%",
+  },
 ];
 
 const projectGallery = [
-  { title: "Building Construction", detail: "Example visual: residential building structure and site progress", img: hero },
-  { title: "Architectural Planning", detail: "Example visual: architectural concepts and drawing coordination", img: architectureStudio },
-  { title: "Structural Works", detail: "Example visual: reinforced concrete and structural construction", img: svcCivil },
-  { title: "Residential Design", detail: "Example visual: house design and exterior planning", img: svcResidential },
-  { title: "House Transformation", detail: "Example visual: residential renovation and exterior improvement", img: houseTransformation },
-  { title: "Site Inspection", detail: "Example visual: site review and construction coordination", img: siteInspection1 },
+  {
+    title: "Building Construction",
+    detail: "Example visual: residential building structure and site progress",
+    img: hero,
+  },
+  {
+    title: "Architectural Planning",
+    detail: "Example visual: architectural concepts and drawing coordination",
+    img: architectureStudio,
+  },
+  {
+    title: "Structural Works",
+    detail: "Example visual: reinforced concrete and structural construction",
+    img: svcCivil,
+  },
+  {
+    title: "Residential Design",
+    detail: "Example visual: house design and exterior planning",
+    img: svcResidential,
+  },
+  {
+    title: "House Transformation",
+    detail: "Example visual: residential renovation and exterior improvement",
+    img: houseTransformation,
+  },
+  {
+    title: "Site Inspection",
+    detail: "Example visual: site review and construction coordination",
+    img: siteInspection1,
+  },
 ];
 
 const steps = [
@@ -77,12 +213,34 @@ const steps = [
   ["Deliver", "Completion according to agreed project requirements."],
 ];
 
-const why = ["Engineering Led Management", "Residential & Commercial Building Capability", "Design & Construction Expertise", "Project-Specific Resource Planning", "Clear Planning & Cost Visibility", "Skilled Technical Workforce", "Quality Focused Execution", "Safety Conscious Operations", "Practical Project Management", "Client Focused Approach"];
+const why = [
+  "Engineering Led Management",
+  "Residential & Commercial Building Capability",
+  "Design & Construction Expertise",
+  "Project-Specific Resource Planning",
+  "Clear Planning & Cost Visibility",
+  "Skilled Technical Workforce",
+  "Quality Focused Execution",
+  "Safety Conscious Operations",
+  "Practical Project Management",
+  "Client Focused Approach",
+];
 
-function SectionHead({ eyebrow, title, accent }: { eyebrow: string; title: string; accent: string }) {
+function SectionHead({
+  eyebrow,
+  title,
+  accent,
+}: {
+  eyebrow: string;
+  title: string;
+  accent: string;
+}) {
   return (
-    <div className="mb-14 max-w-3xl animate-fade-up">
-      <p className="eyebrow mb-4 flex items-center gap-3"><span className="h-px w-10 bg-gold" />{eyebrow}</p>
+    <div data-reveal className="mb-14 max-w-3xl">
+      <p className="eyebrow mb-4 flex items-center gap-3">
+        <span className="h-px w-10 bg-gold" />
+        {eyebrow}
+      </p>
       <h2 className="text-4xl leading-[1.05] md:text-6xl">
         {title} <span className="text-gold-gradient">{accent}</span>
       </h2>
@@ -100,33 +258,67 @@ function Index() {
   const floorValue = Math.max(1, Number(floors) || 1);
   const baseCost = areaValue * floorValue * (Number(rate) || 0);
   const estimatedCost = Math.round(baseCost * (contingency ? 1.1 : 1));
-  const formatPKR = (amount: number) => new Intl.NumberFormat("en-PK", { style: "currency", currency: "PKR", maximumFractionDigits: 0 }).format(amount);
+  const formatPKR = (amount: number) =>
+    new Intl.NumberFormat("en-PK", {
+      style: "currency",
+      currency: "PKR",
+      maximumFractionDigits: 0,
+    }).format(amount);
   return (
     <div className="overflow-x-hidden">
       {/* NAV */}
       <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <a href="#top" className="flex items-center gap-3">
-            <img src={logoMark} alt="Dawud Niaz Engineers and Contractors company logo" className="h-11 w-auto" />
+            <img
+              decoding="async"
+              src={logoMark}
+              alt="Dawud Niaz Engineers and Contractors company logo"
+              className="h-11 w-auto"
+            />
             <div className="leading-tight">
               <div className="font-display text-lg tracking-wide">DAWUD NIAZ</div>
-              <div className="text-[0.6rem] tracking-[0.35em] text-gold">ENGINEERS & CONTRACTORS</div>
+              <div className="text-[0.6rem] tracking-[0.35em] text-gold">
+                ENGINEERS & CONTRACTORS
+              </div>
             </div>
           </a>
           <nav className="hidden items-center gap-9 md:flex">
             {nav.map(([l, h]) => (
-              <a key={h} href={h} className="site-nav-link text-sm text-muted-foreground transition-colors hover:text-gold">{l}</a>
+              <a
+                key={h}
+                href={h}
+                className="site-nav-link text-sm text-muted-foreground transition-colors hover:text-gold"
+              >
+                {l}
+              </a>
             ))}
             <ThemeToggle />
-            <a href="#contact" className="bg-gold-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5">Get a Quote</a>
+            <a
+              href="#contact"
+              className="bg-gold-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+            >
+              Get a Quote
+            </a>
           </nav>
-          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">{open ? <X /> : <Menu />}</button>
+          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+            {open ? <X /> : <Menu />}
+          </button>
         </div>
-        <div className="header-accent-bar" aria-hidden="true"><span /></div>
+        <div className="header-accent-bar" aria-hidden="true">
+          <span />
+        </div>
         {open && (
           <div className="border-t border-border bg-background px-6 py-4 md:hidden">
             {nav.map(([l, h]) => (
-              <a key={h} href={h} onClick={() => setOpen(false)} className="block py-3 text-muted-foreground">{l}</a>
+              <a
+                key={h}
+                href={h}
+                onClick={() => setOpen(false)}
+                className="block py-3 text-muted-foreground"
+              >
+                {l}
+              </a>
             ))}
           </div>
         )}
@@ -134,33 +326,69 @@ function Index() {
 
       {/* HERO */}
       <section id="top" className="relative flex min-h-screen items-center pt-20">
-        <img src={hero} alt="Building construction site with reinforced concrete structure" className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          src={hero}
+          alt="Building construction site with reinforced concrete structure"
+          fetchPriority="high"
+          decoding="async"
+          className="animate-kenburns absolute inset-0 h-full w-full object-cover"
+        />
         <div className="bg-fade absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.2fr_1fr]">
-          <div className="animate-rise">
-            <p className="eyebrow mb-6 flex items-center gap-3"><span className="h-px w-10 bg-gold" />Engineering, Drawings & Construction</p>
-            <h1 className="text-5xl leading-[0.98] md:text-7xl lg:text-8xl">
-              Engineering Ideas.<br /><span className="text-gold-gradient">Building with Purpose.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-              Architectural drawings, structural design coordination, practical construction cost estimates and building construction for houses, apartments and commercial properties.
+          <div>
+            <p className="eyebrow animate-rise mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-gold" />
+              Engineering, Drawings & Construction
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a href="#services" className="group inline-flex items-center gap-2 bg-gold-gradient px-7 py-4 font-semibold text-primary-foreground shadow-gold">
-                Our Services <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <h1 className="animate-rise text-5xl leading-[0.98] [animation-delay:150ms] md:text-7xl lg:text-8xl">
+              Engineering Ideas.
+              <br />
+              <span className="text-gold-gradient">Building with Purpose.</span>
+            </h1>
+            <p className="animate-rise mt-8 max-w-xl text-lg text-muted-foreground [animation-delay:300ms]">
+              Architectural drawings, structural design coordination, practical construction cost
+              estimates and building construction for houses, apartments and commercial properties.
+            </p>
+            <div className="animate-rise mt-10 flex flex-wrap gap-4 [animation-delay:450ms]">
+              <a
+                href="#services"
+                className="cta-shimmer group inline-flex items-center gap-2 bg-gold-gradient px-7 py-4 font-semibold text-primary-foreground shadow-gold"
+              >
+                Our Services{" "}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
-              <a href="#projects" className="inline-flex items-center border border-foreground/30 px-7 py-4 font-semibold transition-colors hover:border-gold hover:text-gold">View Gallery</a>
+              <a
+                href="#projects"
+                className="inline-flex items-center border border-foreground/30 px-7 py-4 font-semibold transition-colors hover:border-gold hover:text-gold"
+              >
+                View Gallery
+              </a>
             </div>
           </div>
           <div className="hidden justify-end lg:flex animate-rise [animation-delay:200ms]">
-            <img src={logo} alt="Dawud Niaz Engineers and Contractors" className="w-full max-w-md drop-shadow-2xl" />
+            <img
+              decoding="async"
+              src={logo}
+              alt="Dawud Niaz Engineers and Contractors"
+              className="animate-float w-full max-w-md drop-shadow-2xl"
+            />
           </div>
         </div>
+        <a
+          href="#about"
+          aria-label="Scroll down"
+          className="scroll-cue absolute bottom-24 left-1/2 z-10 hidden md:flex"
+        >
+          <span />
+        </a>
         <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/70 backdrop-blur">
           <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-4">
             {["Commercial", "Industrial", "Residential", "Design & Architecture"].map((s, i) => (
-              <div key={s} className="flex items-center gap-3 border-l border-border px-6 py-5 first:border-l-0">
+              <div
+                key={s}
+                className="flex items-center gap-3 border-l border-border px-6 py-5 first:border-l-0"
+              >
                 <span className="font-display text-2xl text-gold">0{i + 1}</span>
                 <span className="text-sm tracking-wide text-muted-foreground">{s}</span>
               </div>
@@ -169,21 +397,54 @@ function Index() {
         </div>
       </section>
 
+      {/* MARQUEE */}
+      <div
+        className="marquee overflow-hidden border-b border-border bg-surface py-4"
+        aria-hidden="true"
+      >
+        <div className="animate-marquee flex w-max">
+          {[...marqueeItems, ...marqueeItems].map((t, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-12 whitespace-nowrap pr-12 text-xs uppercase tracking-[0.3em] text-muted-foreground"
+            >
+              {t}
+              <span className="text-gold">◆</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* ABOUT */}
       <section id="about" className="mx-auto max-w-7xl px-6 py-28">
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
             <SectionHead eyebrow="About Us" title="Building with" accent="engineering precision." />
             <div className="space-y-5 text-lg text-muted-foreground">
-              <p>Dawud Niaz Engineers and Contractors provides focused building services for homeowners, property developers and businesses in Lahore and across Pakistan.</p>
-              <p>Our core services include architectural drawings, structural drawings for buildings, houses and apartments, construction cost estimation, and construction.</p>
-              <p>We work to turn project requirements into clear drawings, realistic budgets and carefully managed construction work.</p>
+              <p>
+                Dawud Niaz Engineers and Contractors provides focused building services for
+                homeowners, property developers and businesses in Lahore and across Pakistan.
+              </p>
+              <p>
+                Our core services include architectural drawings, structural drawings for buildings,
+                houses and apartments, construction cost estimation, and construction.
+              </p>
+              <p>
+                We work to turn project requirements into clear drawings, realistic budgets and
+                carefully managed construction work.
+              </p>
             </div>
           </div>
           <div className="grid content-start gap-px bg-border sm:grid-cols-2">
             {[
-              ["Our Mission", "To deliver reliable construction and engineering solutions through professional planning, quality workmanship and responsible execution."],
-              ["Our Vision", "To become a trusted construction and engineering partner known for quality, efficiency and long term project value."],
+              [
+                "Our Mission",
+                "To deliver reliable construction and engineering solutions through professional planning, quality workmanship and responsible execution.",
+              ],
+              [
+                "Our Vision",
+                "To become a trusted construction and engineering partner known for quality, efficiency and long term project value.",
+              ],
             ].map(([t, d]) => (
               <div key={t} className="bg-surface p-8">
                 <h3 className="mb-4 text-2xl text-gold">{t}</h3>
@@ -193,16 +454,34 @@ function Index() {
             <div className="bg-surface p-8 sm:col-span-2">
               <h3 className="mb-5 text-2xl">Core Values</h3>
               <div className="flex flex-wrap gap-2">
-                {["Integrity", "Quality", "Safety", "Accountability", "Professionalism", "Teamwork", "Client Commitment"].map((v) => (
-                  <span key={v} className="border border-gold/40 px-4 py-2 text-sm text-gold-soft">{v}</span>
+                {[
+                  "Integrity",
+                  "Quality",
+                  "Safety",
+                  "Accountability",
+                  "Professionalism",
+                  "Teamwork",
+                  "Client Commitment",
+                ].map((v) => (
+                  <span key={v} className="border border-gold/40 px-4 py-2 text-sm text-gold-soft">
+                    {v}
+                  </span>
                 ))}
               </div>
             </div>
             <div className="grid grid-cols-3 bg-surface sm:col-span-2">
-              {[["46K", "Sq. Ft. Formwork"], ["4", "Core Services"], ["3", "Building Types"]].map(([n, l]) => (
+              {[
+                [46, "K", "Sq. Ft. Formwork"],
+                [4, "", "Core Services"],
+                [3, "", "Building Types"],
+              ].map(([n, sfx, l]) => (
                 <div key={l} className="border-l border-border p-6 text-center first:border-l-0">
-                  <div className="font-display text-4xl text-gold-gradient">{n}</div>
-                  <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{l}</div>
+                  <div className="font-display text-4xl text-gold-gradient">
+                    <CountUp to={n as number} suffix={sfx as string} />
+                  </div>
+                  <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+                    {l}
+                  </div>
                 </div>
               ))}
             </div>
@@ -213,15 +492,30 @@ function Index() {
       {/* SERVICES */}
       <section id="services" className="bg-surface py-28">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHead eyebrow="Our Services" title="Building design &" accent="construction services." />
+          <SectionHead
+            eyebrow="Our Services"
+            title="Building design &"
+            accent="construction services."
+          />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s, i) => (
-              <article key={s.t} className="group relative overflow-hidden rounded-md border border-border bg-card transition-all duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-gold">
+              <article
+                key={s.t}
+                className="group relative overflow-hidden rounded-md border border-border bg-card transition-all duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-gold"
+              >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={s.img} alt={s.t} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img
+                    decoding="async"
+                    src={s.img}
+                    alt={s.t}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
                 <div className="p-6">
-                  <span className="font-display text-sm text-gold">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-display text-sm text-gold">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <h3 className="mt-1 text-2xl leading-tight">{s.t}</h3>
                   <p className="mt-3 text-sm text-muted-foreground">{s.d}</p>
                 </div>
@@ -235,21 +529,43 @@ function Index() {
       {/* CEO */}
       <section id="leadership" className="relative py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2">
-          <div className="relative">
+          <div className="relative" data-reveal="left">
             <div className="absolute -left-4 -top-4 h-full w-full border border-gold/50" />
-            <img src={ceo} alt="Engr. Muhammad Aun Niaz, CEO" className="relative aspect-[4/5] w-full object-cover object-top shadow-md" />
+            <img
+              src={ceo}
+              alt="Engr. Muhammad Aun Niaz, CEO"
+              loading="lazy"
+              decoding="async"
+              className="relative aspect-[4/5] w-full object-cover object-top shadow-md"
+            />
           </div>
-          <div>
-            <p className="eyebrow mb-4 flex items-center gap-3"><span className="h-px w-10 bg-gold" />Leadership & project delivery</p>
-            <h2 className="text-4xl md:text-6xl">Engr. Muhammad <span className="text-gold-gradient">Aun Niaz</span></h2>
-            <p className="mt-3 tracking-widest text-muted-foreground uppercase text-sm">Chief Executive Officer</p>
+          <div data-reveal="right">
+            <p className="eyebrow mb-4 flex items-center gap-3">
+              <span className="h-px w-10 bg-gold" />
+              Leadership & project delivery
+            </p>
+            <h2 className="text-4xl md:text-6xl">
+              Engr. Muhammad <span className="text-gold-gradient">Aun Niaz</span>
+            </h2>
+            <p className="mt-3 tracking-widest text-muted-foreground uppercase text-sm">
+              Chief Executive Officer
+            </p>
             <Quote className="mt-10 h-10 w-10 text-gold" />
             <blockquote className="mt-4 space-y-4 font-display text-2xl leading-snug text-foreground/90">
-              <p>At Dawud Niaz Engineers and Contractors our objective is to combine engineering knowledge with disciplined project execution.</p>
-              <p className="text-lg font-sans leading-relaxed text-muted-foreground">We focus on understanding each project's technical requirements and delivering solutions that create lasting value. Our commitment remains centred on quality construction, responsible engineering and relationships built on professional trust.</p>
+              <p>
+                At Dawud Niaz Engineers and Contractors our objective is to combine engineering
+                knowledge with disciplined project execution.
+              </p>
+              <p className="text-lg font-sans leading-relaxed text-muted-foreground">
+                We focus on understanding each project's technical requirements and delivering
+                solutions that create lasting value. Our commitment remains centred on quality
+                construction, responsible engineering and relationships built on professional trust.
+              </p>
             </blockquote>
             <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-[0.3em] text-gold">
-              {["ENGINEERING", "PLANNING", "CONSTRUCTION", "LASTING VALUE"].map((w) => <span key={w}>{w}</span>)}
+              {["ENGINEERING", "PLANNING", "CONSTRUCTION", "LASTING VALUE"].map((w) => (
+                <span key={w}>{w}</span>
+              ))}
             </div>
           </div>
         </div>
@@ -258,17 +574,39 @@ function Index() {
       {/* TEAM */}
       <section className="bg-surface py-28">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHead eyebrow="Our Leadership" title="Experienced professionals." accent="Building with clarity." />
+          <SectionHead
+            eyebrow="Our Leadership"
+            title="Experienced professionals."
+            accent="Building with clarity."
+          />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((m) => (
-              <div key={m.n} className="group relative overflow-hidden border border-border bg-card">
+              <div
+                key={m.n}
+                className="group relative overflow-hidden border border-border bg-card"
+              >
                 <div className="aspect-[4/3] overflow-hidden bg-muted">
                   {m.img ? (
-                    <img src={m.img} alt={m.imageAlt} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                    <img
+                      decoding="async"
+                      src={m.img}
+                      alt={m.imageAlt}
+                      loading="lazy"
+                      style={{ objectPosition: m.pos }}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
                   ) : (
                     <div className="flex h-full flex-col items-center justify-center gap-3 text-center text-muted-foreground">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full border border-gold/50 bg-background font-display text-3xl text-gold">{m.n.split(" ").map((part) => part[0]).slice(0, 2).join("")}</div>
-                      <span className="text-xs uppercase tracking-widest">Portrait to be supplied</span>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full border border-gold/50 bg-background font-display text-3xl text-gold">
+                        {m.n
+                          .split(" ")
+                          .map((part) => part[0])
+                          .slice(0, 2)
+                          .join("")}
+                      </div>
+                      <span className="text-xs uppercase tracking-widest">
+                        Portrait to be supplied
+                      </span>
                     </div>
                   )}
                 </div>
@@ -286,13 +624,30 @@ function Index() {
 
       {/* PROJECTS */}
       <section id="projects" className="mx-auto max-w-7xl px-6 py-28">
-        <SectionHead eyebrow="Project Gallery" title="Building expertise across" accent="residential & commercial projects." />
-        <p className="-mt-7 mb-10 max-w-3xl text-sm text-muted-foreground">Explore examples of building types and construction activities. Before publication, replace illustrative images with approved photographs of completed projects carried out by Dawud Niaz Engineers and Contractors.</p>
+        <SectionHead
+          eyebrow="Project Gallery"
+          title="Building expertise across"
+          accent="residential & commercial projects."
+        />
+        <p className="-mt-7 mb-10 max-w-3xl text-sm text-muted-foreground">
+          Explore examples of building types and construction activities. Before publication,
+          replace illustrative images with approved photographs of completed projects carried out by
+          Dawud Niaz Engineers and Contractors.
+        </p>
         <div className="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {projectGallery.map((item) => (
-            <article key={item.title} className="overflow-hidden rounded-md border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-md">
+            <article
+              key={item.title}
+              className="overflow-hidden rounded-md border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-md"
+            >
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={item.img} alt={item.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                <img
+                  decoding="async"
+                  src={item.img}
+                  alt={item.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
               </div>
               <div className="p-5">
                 <h3 className="text-xl">{item.title}</h3>
@@ -303,14 +658,26 @@ function Index() {
         </div>
         <div className="mt-8 border-l-4 border-gold bg-card p-6 md:p-8">
           <h3 className="text-2xl">Have a project in mind?</h3>
-          <p className="mt-2 max-w-3xl text-muted-foreground">Share your drawings, covered area or project requirements with our team. We can discuss the right service, estimated scope and next steps for your building project.</p>
-          <a href="#contact" className="mt-5 inline-flex items-center gap-2 font-semibold text-gold hover:gap-3 transition-all">Discuss your project <ArrowRight className="h-4 w-4" /></a>
+          <p className="mt-2 max-w-3xl text-muted-foreground">
+            Share your drawings, covered area or project requirements with our team. We can discuss
+            the right service, estimated scope and next steps for your building project.
+          </p>
+          <a
+            href="#contact"
+            className="mt-5 inline-flex items-center gap-2 font-semibold text-gold hover:gap-3 transition-all"
+          >
+            Discuss your project <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </section>
 
       {/* PROCESS + WHY */}
       <section className="mx-auto max-w-7xl px-6 py-28">
-        <SectionHead eyebrow="How We Work" title="A structured approach" accent="from start to finish." />
+        <SectionHead
+          eyebrow="How We Work"
+          title="A structured approach"
+          accent="from start to finish."
+        />
         <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
           {steps.map(([t, d], i) => (
             <div key={t} className="group bg-background p-8 transition-colors hover:bg-surface">
@@ -324,8 +691,13 @@ function Index() {
         <div className="mt-24 grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <p className="eyebrow mb-4">Why Choose Us</p>
-            <h2 className="text-4xl md:text-5xl">Building safer, better <span className="text-gold-gradient">& stronger.</span></h2>
-            <p className="mt-6 text-muted-foreground">People · Planning · Quality · Trust. We focus on clear documentation, practical cost planning and well-coordinated building work.</p>
+            <h2 className="text-4xl md:text-5xl">
+              Building safer, better <span className="text-gold-gradient">& stronger.</span>
+            </h2>
+            <p className="mt-6 text-muted-foreground">
+              People · Planning · Quality · Trust. We focus on clear documentation, practical cost
+              planning and well-coordinated building work.
+            </p>
           </div>
           <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
             {why.map((w) => (
@@ -342,30 +714,90 @@ function Index() {
       <section id="cost-calculator" className="bg-surface py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:items-start">
           <div>
-            <p className="eyebrow mb-4 flex items-center gap-3"><span className="h-px w-10 bg-gold" />Plan Your Budget</p>
-            <h2 className="text-4xl md:text-6xl">Construction cost <span className="text-gold-gradient">calculator.</span></h2>
-            <p className="mt-6 max-w-xl text-muted-foreground">Get a quick preliminary estimate based on covered area, number of floors and finishing level. Actual costs vary with design, materials, location and site conditions.</p>
-            <p className="mt-4 text-sm text-muted-foreground">Illustrative budgeting only. Final rates depend on current material prices, location, design and site conditions; request a formal quotation before making decisions.</p>
+            <p className="eyebrow mb-4 flex items-center gap-3">
+              <span className="h-px w-10 bg-gold" />
+              Plan Your Budget
+            </p>
+            <h2 className="text-4xl md:text-6xl">
+              Construction cost <span className="text-gold-gradient">calculator.</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-muted-foreground">
+              Get a quick preliminary estimate based on covered area, number of floors and finishing
+              level. Actual costs vary with design, materials, location and site conditions.
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Illustrative budgeting only. Final rates depend on current material prices, location,
+              design and site conditions; request a formal quotation before making decisions.
+            </p>
           </div>
           <div className="border border-border bg-card p-6 md:p-8">
-            <div className="mb-6 flex items-center gap-3"><Calculator className="h-6 w-6 text-gold" /><h3 className="text-2xl">Estimate your project</h3></div>
+            <div className="mb-6 flex items-center gap-3">
+              <Calculator className="h-6 w-6 text-gold" />
+              <h3 className="text-2xl">Estimate your project</h3>
+            </div>
             <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block text-sm text-muted-foreground">Covered area per floor (sq. ft.)
-                <input type="number" min="1" value={area} onChange={(e) => setArea(e.target.value)} className="mt-2 w-full border border-input bg-transparent px-3 py-3 text-foreground outline-none focus:border-gold" />
+              <label className="block text-sm text-muted-foreground">
+                Covered area per floor (sq. ft.)
+                <input
+                  type="number"
+                  min="1"
+                  value={area}
+                  onChange={(e) => setArea(e.target.value)}
+                  className="mt-2 w-full border border-input bg-transparent px-3 py-3 text-foreground outline-none focus:border-gold"
+                />
               </label>
-              <label className="block text-sm text-muted-foreground">Number of floors
-                <select value={floors} onChange={(e) => setFloors(e.target.value)} className="mt-2 w-full border border-input bg-background px-3 py-3 text-foreground outline-none focus:border-gold"><option value="1">1 floor</option><option value="2">2 floors</option><option value="3">3 floors</option><option value="4">4 floors</option><option value="5">5 floors</option></select>
+              <label className="block text-sm text-muted-foreground">
+                Number of floors
+                <select
+                  value={floors}
+                  onChange={(e) => setFloors(e.target.value)}
+                  className="mt-2 w-full border border-input bg-background px-3 py-3 text-foreground outline-none focus:border-gold"
+                >
+                  <option value="1">1 floor</option>
+                  <option value="2">2 floors</option>
+                  <option value="3">3 floors</option>
+                  <option value="4">4 floors</option>
+                  <option value="5">5 floors</option>
+                </select>
               </label>
-              <label className="block text-sm text-muted-foreground sm:col-span-2">Construction standard
-                <select value={rate} onChange={(e) => setRate(e.target.value)} className="mt-2 w-full border border-input bg-background px-3 py-3 text-foreground outline-none focus:border-gold"><option value="3000">Grey structure — PKR 3,000 / sq. ft.</option><option value="4500">Standard finishing — PKR 4,500 / sq. ft.</option><option value="6000">Premium finishing — PKR 6,000 / sq. ft.</option></select>
+              <label className="block text-sm text-muted-foreground sm:col-span-2">
+                Construction standard
+                <select
+                  value={rate}
+                  onChange={(e) => setRate(e.target.value)}
+                  className="mt-2 w-full border border-input bg-background px-3 py-3 text-foreground outline-none focus:border-gold"
+                >
+                  <option value="3000">Grey structure — PKR 3,000 / sq. ft.</option>
+                  <option value="4500">Standard finishing — PKR 4,500 / sq. ft.</option>
+                  <option value="6000">Premium finishing — PKR 6,000 / sq. ft.</option>
+                </select>
               </label>
             </div>
-            <label className="mt-5 flex cursor-pointer items-center gap-3 text-sm text-muted-foreground"><input type="checkbox" checked={contingency} onChange={(e) => setContingency(e.target.checked)} className="h-4 w-4 accent-yellow-600" />Include 10% contingency allowance</label>
+            <label className="mt-5 flex cursor-pointer items-center gap-3 text-sm text-muted-foreground">
+              <input
+                type="checkbox"
+                checked={contingency}
+                onChange={(e) => setContingency(e.target.checked)}
+                className="h-4 w-4 accent-yellow-600"
+              />
+              Include 10% contingency allowance
+            </label>
             <div className="mt-7 border-t border-border pt-6">
-              <p className="text-sm uppercase tracking-widest text-muted-foreground">Estimated construction budget</p>
-              <p className="mt-2 break-words font-display text-3xl text-gold-gradient md:text-4xl">{formatPKR(estimatedCost)}</p>
-              <p className="mt-2 text-xs text-muted-foreground">Total covered area: {(areaValue * floorValue).toLocaleString("en-PK")} sq. ft.</p>
-              <a href="#contact" className="mt-6 inline-flex items-center gap-2 bg-gold-gradient px-6 py-3 font-semibold text-primary-foreground">Request an accurate quote <ArrowRight className="h-4 w-4" /></a>
+              <p className="text-sm uppercase tracking-widest text-muted-foreground">
+                Estimated construction budget
+              </p>
+              <p className="mt-2 break-words font-display text-3xl text-gold-gradient md:text-4xl">
+                {formatPKR(estimatedCost)}
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Total covered area: {(areaValue * floorValue).toLocaleString("en-PK")} sq. ft.
+              </p>
+              <a
+                href="#contact"
+                className="mt-6 inline-flex items-center gap-2 bg-gold-gradient px-6 py-3 font-semibold text-primary-foreground"
+              >
+                Request an accurate quote <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -385,14 +817,22 @@ function Index() {
               ].map(([Icon, t, href]) => {
                 const I = Icon as typeof MapPin;
                 return (
-                  <a key={t as string} href={(href as string) ?? undefined} className="flex items-center gap-5 text-lg transition-colors hover:text-gold">
-                    <span className="flex h-12 w-12 items-center justify-center border border-gold/50 text-gold"><I className="h-5 w-5" /></span>
+                  <a
+                    key={t as string}
+                    href={(href as string) ?? undefined}
+                    className="flex items-center gap-5 text-lg transition-colors hover:text-gold"
+                  >
+                    <span className="flex h-12 w-12 items-center justify-center border border-gold/50 text-gold">
+                      <I className="h-5 w-5" />
+                    </span>
                     {t as string}
                   </a>
                 );
               })}
             </div>
-            <p className="mt-10 text-xs tracking-[0.3em] text-muted-foreground">REGISTERED WITH FBR PAKISTAN</p>
+            <p className="mt-10 text-xs tracking-[0.3em] text-muted-foreground">
+              REGISTERED WITH FBR PAKISTAN
+            </p>
           </div>
           <form
             onSubmit={(e) => {
@@ -403,25 +843,46 @@ function Index() {
             className="space-y-5 border border-border bg-card p-8 md:p-10"
           >
             <h3 className="text-3xl">Request a Quote</h3>
-            {[["name", "Full name"], ["phone", "Phone number"]].map(([n, p]) => (
-              <input key={n} name={n} required placeholder={p} className="w-full border-b border-input bg-transparent py-3 outline-none transition-colors placeholder:text-muted-foreground focus:border-gold" />
+            {[
+              ["name", "Full name"],
+              ["phone", "Phone number"],
+            ].map(([n, p]) => (
+              <input
+                key={n}
+                name={n}
+                required
+                placeholder={p}
+                className="w-full border-b border-input bg-transparent py-3 outline-none transition-colors placeholder:text-muted-foreground focus:border-gold"
+              />
             ))}
-            <textarea name="message" required rows={4} placeholder="Tell us about your project" className="w-full resize-none border-b border-input bg-transparent py-3 outline-none placeholder:text-muted-foreground focus:border-gold" />
-            <button className="w-full bg-gold-gradient py-4 font-semibold text-primary-foreground shadow-gold transition-transform hover:-translate-y-0.5">Send Enquiry</button>
+            <textarea
+              name="message"
+              required
+              rows={4}
+              placeholder="Tell us about your project"
+              className="w-full resize-none border-b border-input bg-transparent py-3 outline-none placeholder:text-muted-foreground focus:border-gold"
+            />
+            <button className="w-full bg-gold-gradient py-4 font-semibold text-primary-foreground shadow-gold transition-transform hover:-translate-y-0.5">
+              Send Enquiry
+            </button>
           </form>
         </div>
       </section>
 
       <footer className="border-t border-border py-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
-          <img src={logo} alt="Dawud Niaz Engineers and Contractors" className="h-20 w-auto" />
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Dawud Niaz Engineers and Contractors. All rights reserved.</p>
+          <img
+            decoding="async"
+            loading="lazy"
+            src={logo}
+            alt="Dawud Niaz Engineers and Contractors"
+            className="h-20 w-auto"
+          />
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Dawud Niaz Engineers and Contractors. All rights reserved.
+          </p>
         </div>
       </footer>
-      <a href="https://wa.me/923338581087" target="_blank" rel="noreferrer" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp" className="whatsapp-float fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-300" >
-        <svg viewBox="0 0 32 32" aria-hidden="true" className="h-8 w-8 fill-current"><path d="M16.04 3C8.9 3 3.1 8.78 3.1 15.9c0 2.27.6 4.49 1.74 6.45L3 29l6.83-1.79a13 13 0 0 0 6.2 1.57h.01c7.13 0 12.94-5.79 12.94-12.91 0-3.45-1.35-6.69-3.79-9.12A12.85 12.85 0 0 0 16.04 3Zm0 23.57h-.01a10.7 10.7 0 0 1-5.45-1.49l-.39-.23-4.05 1.06 1.08-3.95-.25-.41a10.67 10.67 0 0 1-1.64-5.65c0-5.9 4.81-10.7 10.72-10.7 2.86 0 5.55 1.12 7.57 3.14a10.63 10.63 0 0 1 3.13 7.57c0 5.9-4.81 10.66-10.71 10.66Zm5.88-8.01c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.72.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.61-1.9-1.8-2.22-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.73-.99-2.37-.26-.62-.52-.54-.72-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.06 1.3 3.27c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.54.27-.76.27-1.41.19-1.54-.08-.13-.29-.21-.61-.37Z" /></svg>
-        <span className="whatsapp-tooltip pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded bg-card px-3 py-2 text-xs font-medium text-foreground opacity-0 shadow-lg transition-opacity">Chat with us on WhatsApp</span>
-      </a>
     </div>
   );
 }

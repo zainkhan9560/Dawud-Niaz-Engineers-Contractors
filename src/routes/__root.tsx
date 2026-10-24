@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -12,6 +13,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import FloatingActions from "@/components/FloatingActions";
+import ScrollReveal from "@/components/ScrollReveal";
 
 function NotFoundComponent() {
   return (
@@ -78,8 +81,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#18140f" },
       { title: "Dawud Niaz Engineers and Contractors | Lahore, Pakistan" },
-      { name: "description", content: "Architectural drawings, structural drawings, construction cost estimation and building construction in Lahore, Pakistan." },
+      {
+        name: "description",
+        content:
+          "Architectural drawings, structural drawings, construction cost estimation and building construction in Lahore, Pakistan.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Dawud Niaz Engineers and Contractors" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -95,7 +103,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
+    ],
+    // Apply the saved theme before first paint. Dark is the default for new visitors.
+    scripts: [
+      {
+        children:
+          'try{var t=localStorage.getItem("dn-theme");if(t==="light"){document.documentElement.classList.remove("dark")}else{document.documentElement.classList.add("dark")}}catch(e){document.documentElement.classList.add("dark")}',
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -106,12 +125,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body>
         {children}
+        <FloatingActions />
         <Scripts />
       </body>
     </html>
@@ -120,11 +140,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (st) => st.location.pathname });
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div key={pathname} className="page-enter">
+        <Outlet />
+      </div>
+      <ScrollReveal />
     </QueryClientProvider>
   );
 }
