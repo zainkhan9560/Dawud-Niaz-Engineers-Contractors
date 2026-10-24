@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   Menu,
@@ -10,12 +10,16 @@ import {
   Check,
   ArrowRight,
   Quote,
-  Calculator,
+  ChevronDown,
 } from "lucide-react";
 
 import logo from "@/assets/dawud-niaz-company-logo.webp";
 import logoMark from "@/assets/dawud-niaz-logo-mark.webp";
 import ThemeToggle from "@/components/ThemeToggle";
+import CostCalculator from "@/components/CostCalculator";
+import SiteLinks from "@/components/SiteLinks";
+import { services as servicePages, servicePath } from "@/content/services";
+import { MAPS_EMBED_URL, REVIEW_LINK, SITE_NAME, businessLd, pageHead, websiteLd } from "@/lib/seo";
 import hero from "@/assets/building-construction-hero.webp";
 import ceo from "@/assets/engr-muhammad-aun-niaz-profile.webp";
 import saqib from "@/assets/saqib-niaz.webp";
@@ -31,48 +35,25 @@ import svcDesign from "@/assets/architectural-design-example.webp";
 import svcManagement from "@/assets/construction-planning-example.webp";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    links: [{ rel: "preload", as: "image", href: hero, type: "image/webp" }],
-    meta: [
-      { title: "Dawud Niaz Engineers and Contractors | Construction & Design in Lahore" },
-      {
-        name: "description",
-        content:
-          "Dawud Niaz Engineers and Contractors provides architectural drawings, structural drawings, construction cost estimation and building construction services in Lahore, Pakistan.",
-      },
-      {
-        property: "og:title",
-        content: "Dawud Niaz Engineers and Contractors — Engineering Ideas. Building with Purpose.",
-      },
-      {
-        property: "og:description",
-        content:
-          "Architectural planning, structural drawings, construction cost estimation and residential and commercial building construction in Lahore, Pakistan.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "keywords",
-        content:
-          "architectural drawings Lahore, structural drawings Lahore, construction cost estimation Pakistan, house construction Lahore, apartment construction, Dawud Niaz Engineers and Contractors",
-      },
-      { name: "robots", content: "index, follow, max-image-preview:large" },
-    ],
-  }),
+  head: () => {
+    const seo = pageHead({
+      title: "Dawud Niaz Engineers and Contractors | Construction & Design in Lahore",
+      description:
+        "Architectural drawings, structural drawings, construction cost estimation and building construction in Lahore, Pakistan. Get a free quote from Dawud Niaz Engineers and Contractors.",
+      path: "/",
+      jsonLd: [
+        businessLd(servicePages.map((x) => ({ name: x.title, path: servicePath(x.slug) }))),
+        websiteLd(),
+      ],
+    });
+    return {
+      ...seo,
+      links: [...seo.links, { rel: "preload", as: "image", href: hero, type: "image/webp" }],
+      meta: [...seo.meta, { name: "robots", content: "index, follow, max-image-preview:large" }],
+    };
+  },
   component: Index,
 });
-
-const nav = [
-  ["About", "/about"],
-  ["Services", "/services"],
-  ["Leadership", "/leadership"],
-  ["Selected Projects", "/selected-projects"],
-  ["Gallery", "/gallery"],
-  ["Equipment", "/equipment"],
-  ["Our Team", "/our-team"],
-  ["Cost Calculator", "#cost-calculator"],
-  ["Contact", "#contact"],
-];
 
 const marqueeItems = [
   "Architectural Drawings",
@@ -120,21 +101,25 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 const services = [
   {
     t: "Architectural Drawings",
+    slug: "architectural-drawings-lahore",
     d: "Thoughtful floor plans, elevations, space planning and architectural drawing sets for houses, apartments and commercial buildings.",
     img: svcDesign,
   },
   {
     t: "Structural Drawings",
+    slug: "structural-drawings-lahore",
     d: "Building structure drawing coordination for foundations, columns, beams, slabs and reinforced concrete elements, developed to project requirements.",
     img: svcCivil,
   },
   {
     t: "Construction Cost Estimation",
+    slug: "construction-cost-estimation-lahore",
     d: "Preliminary quantities and cost estimates to help clients understand expected materials, labour and construction budgets before work begins.",
     img: svcManagement,
   },
   {
     t: "Building Construction",
+    slug: "building-construction-lahore",
     d: "Planned construction for houses, apartments and commercial buildings, with attention to workmanship, coordination, site safety and quality.",
     img: svcResidential,
   },
@@ -248,84 +233,344 @@ function SectionHead({
   );
 }
 
-function Index() {
+const companyMenu = [
+  { label: "About Us", to: "/about" },
+  { label: "Leadership", to: "/leadership" },
+  { label: "Our Team", to: "/our-team" },
+  { label: "Equipment", to: "/equipment" },
+  { label: "Gallery", to: "/gallery" },
+] as const;
+
+const resourcesMenu = [
+  { label: "Cost Calculator", to: "/cost-calculator" },
+  { label: "Blog & Guides", to: "/blog" },
+] as const;
+
+const desktopLink =
+  "site-nav-link text-[0.9rem] font-medium text-muted-foreground transition-colors hover:text-gold focus-visible:text-gold";
+const mobileLink =
+  "block border-b border-border/60 py-3.5 text-base text-muted-foreground transition-colors hover:text-gold";
+const dropdownPanel =
+  "invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100";
+const dropdownItem =
+  "block px-4 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-gold focus-visible:bg-surface focus-visible:text-gold";
+
+function LandingHeader() {
   const [open, setOpen] = useState(false);
-  const [area, setArea] = useState("1000");
-  const [rate, setRate] = useState("4500");
-  const [floors, setFloors] = useState("1");
-  const [contingency, setContingency] = useState(true);
-  const areaValue = Math.max(0, Number(area) || 0);
-  const floorValue = Math.max(1, Number(floors) || 1);
-  const baseCost = areaValue * floorValue * (Number(rate) || 0);
-  const estimatedCost = Math.round(baseCost * (contingency ? 1.1 : 1));
-  const formatPKR = (amount: number) =>
-    new Intl.NumberFormat("en-PK", {
-      style: "currency",
-      currency: "PKR",
-      maximumFractionDigits: 0,
-    }).format(amount);
+  const [scrolled, setScrolled] = useState(false);
+  const [sub, setSub] = useState<"services" | "company" | "resources" | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const close = () => {
+    setOpen(false);
+    setSub(null);
+  };
+
   return (
-    <div className="overflow-x-hidden">
-      {/* NAV */}
-      <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-xl">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <a href="#top" className="flex items-center gap-3">
-            <img
-              decoding="async"
-              src={logoMark}
-              alt="Dawud Niaz Engineers and Contractors company logo"
-              className="h-11 w-auto"
-            />
-            <div className="leading-tight">
-              <div className="font-display text-lg tracking-wide">DAWUD NIAZ</div>
-              <div className="text-[0.6rem] tracking-[0.35em] text-gold">
-                ENGINEERS & CONTRACTORS
+    <header
+      className={`site-header fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-xl transition-shadow duration-300 ${
+        scrolled || open ? "shadow-lg shadow-black/20" : ""
+      }`}
+    >
+      {/* Slim contact bar: collapses once the page is scrolled */}
+      <div
+        className={`hidden overflow-hidden border-b border-border/60 bg-surface text-xs text-muted-foreground transition-all duration-300 lg:block ${
+          scrolled ? "max-h-0 border-transparent opacity-0" : "max-h-10 opacity-100"
+        }`}
+      >
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6">
+          <p className="flex items-center gap-2">
+            <MapPin className="h-3.5 w-3.5 text-gold" />
+            126 J Gulberg III, Lahore, Pakistan
+          </p>
+          <div className="flex items-center gap-6">
+            <a
+              href="tel:+923338581087"
+              className="flex items-center gap-2 transition-colors hover:text-gold"
+            >
+              <Phone className="h-3.5 w-3.5 text-gold" />
+              0333 858 1087
+            </a>
+            <a
+              href="mailto:Info@Dawudniazassociates.com"
+              className="flex items-center gap-2 transition-colors hover:text-gold"
+            >
+              <Mail className="h-3.5 w-3.5 text-gold" />
+              Info@Dawudniazassociates.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main bar */}
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 transition-all duration-300 ${
+          scrolled ? "h-16" : "h-20"
+        }`}
+      >
+        <a
+          href="#top"
+          className="flex shrink-0 items-center gap-3"
+          aria-label="Dawud Niaz Engineers and Contractors, back to top"
+        >
+          <img
+            decoding="async"
+            src={logoMark}
+            alt="Dawud Niaz Engineers and Contractors company logo"
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-9" : "h-11"}`}
+          />
+          <div className="whitespace-nowrap leading-tight">
+            <div className="font-display text-lg tracking-wide">DAWUD NIAZ</div>
+            <div className="text-[0.6rem] tracking-[0.35em] text-gold">ENGINEERS & CONTRACTORS</div>
+          </div>
+        </a>
+
+        <nav
+          className="hidden min-w-0 flex-1 items-center justify-center gap-5 min-[1100px]:flex xl:gap-9"
+          aria-label="Main"
+        >
+          <div className="group relative">
+            <Link to="/services" className={`${desktopLink} gap-1`}>
+              Services
+              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
+            </Link>
+            <div className={dropdownPanel}>
+              <div className="border border-border bg-card p-2 shadow-2xl">
+                {servicePages.map((x) => (
+                  <Link
+                    key={x.slug}
+                    to="/services/$slug"
+                    params={{ slug: x.slug }}
+                    className={dropdownItem}
+                  >
+                    {x.name}
+                  </Link>
+                ))}
+                <Link
+                  to="/services"
+                  className="mt-1 block border-t border-border px-4 py-2.5 text-sm font-semibold text-gold hover:underline"
+                >
+                  View all services →
+                </Link>
               </div>
             </div>
+          </div>
+
+          <Link to="/selected-projects" className={desktopLink}>
+            Projects
+          </Link>
+
+          <div className="group relative">
+            <button type="button" className={`${desktopLink} gap-1`} aria-haspopup="true">
+              Company
+              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
+            </button>
+            <div className={dropdownPanel}>
+              <div className="border border-border bg-card p-2 shadow-2xl">
+                {companyMenu.map((m) => (
+                  <Link key={m.to} to={m.to} className={dropdownItem}>
+                    {m.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="group relative">
+            <button type="button" className={`${desktopLink} gap-1`} aria-haspopup="true">
+              Resources
+              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-focus-within:rotate-180 group-hover:rotate-180" />
+            </button>
+            <div className={dropdownPanel}>
+              <div className="border border-border bg-card p-2 shadow-2xl">
+                {resourcesMenu.map((m) => (
+                  <Link key={m.to} to={m.to} className={dropdownItem}>
+                    {m.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" className={desktopLink}>
+            Contact
           </a>
-          <nav className="hidden items-center gap-9 md:flex">
-            {nav.map(([l, h]) => (
-              <a
-                key={h}
-                href={h}
-                className="site-nav-link text-sm text-muted-foreground transition-colors hover:text-gold"
-              >
-                {l}
-              </a>
-            ))}
-            <ThemeToggle />
+        </nav>
+
+        <div className="flex shrink-0 items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            className="cta-shimmer hidden bg-gold-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
+          >
+            Get a Quote
+          </a>
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center border border-border text-foreground transition-colors hover:border-gold hover:text-gold min-[1100px]:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      <div className="header-accent-bar" aria-hidden="true">
+        <span />
+      </div>
+
+      {/* Mobile and tablet menu */}
+      {open && (
+        <nav
+          className="max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-border bg-background px-6 pb-8 pt-2 min-[1100px]:hidden"
+          aria-label="Mobile"
+        >
+          <div>
+            <button
+              type="button"
+              onClick={() => setSub(sub === "services" ? null : "services")}
+              aria-expanded={sub === "services"}
+              className={`${mobileLink} flex w-full items-center justify-between text-left`}
+            >
+              Services
+              <ChevronDown
+                className={`h-4 w-4 transition-transform duration-200 ${sub === "services" ? "rotate-180 text-gold" : ""}`}
+              />
+            </button>
+            {sub === "services" && (
+              <div className="border-b border-border/60 bg-surface/60 py-1 pl-4">
+                {servicePages.map((x) => (
+                  <Link
+                    key={x.slug}
+                    to="/services/$slug"
+                    params={{ slug: x.slug }}
+                    onClick={close}
+                    className="block py-2.5 text-sm text-muted-foreground transition-colors hover:text-gold"
+                  >
+                    {x.name}
+                  </Link>
+                ))}
+                <Link
+                  to="/services"
+                  onClick={close}
+                  className="block py-2.5 text-sm font-semibold text-gold"
+                >
+                  View all services →
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <Link to="/selected-projects" onClick={close} className={mobileLink}>
+            Projects
+          </Link>
+
+          <div>
+            <button
+              type="button"
+              onClick={() => setSub(sub === "company" ? null : "company")}
+              aria-expanded={sub === "company"}
+              className={`${mobileLink} flex w-full items-center justify-between text-left`}
+            >
+              Company
+              <ChevronDown
+                className={`h-4 w-4 transition-transform duration-200 ${sub === "company" ? "rotate-180 text-gold" : ""}`}
+              />
+            </button>
+            {sub === "company" && (
+              <div className="border-b border-border/60 bg-surface/60 py-1 pl-4">
+                {companyMenu.map((m) => (
+                  <Link
+                    key={m.to}
+                    to={m.to}
+                    onClick={close}
+                    className="block py-2.5 text-sm text-muted-foreground transition-colors hover:text-gold"
+                  >
+                    {m.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <button
+              type="button"
+              onClick={() => setSub(sub === "resources" ? null : "resources")}
+              aria-expanded={sub === "resources"}
+              className={`${mobileLink} flex w-full items-center justify-between text-left`}
+            >
+              Resources
+              <ChevronDown
+                className={`h-4 w-4 transition-transform duration-200 ${sub === "resources" ? "rotate-180 text-gold" : ""}`}
+              />
+            </button>
+            {sub === "resources" && (
+              <div className="border-b border-border/60 bg-surface/60 py-1 pl-4">
+                {resourcesMenu.map((m) => (
+                  <Link
+                    key={m.to}
+                    to={m.to}
+                    onClick={close}
+                    className="block py-2.5 text-sm text-muted-foreground transition-colors hover:text-gold"
+                  >
+                    {m.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <a href="#contact" onClick={close} className={mobileLink}>
+            Contact
+          </a>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <a
               href="#contact"
-              className="bg-gold-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              onClick={close}
+              className="cta-shimmer flex items-center justify-center bg-gold-gradient px-5 py-3 font-semibold text-primary-foreground"
             >
               Get a Quote
             </a>
-          </nav>
-          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
-            {open ? <X /> : <Menu />}
-          </button>
-        </div>
-        <div className="header-accent-bar" aria-hidden="true">
-          <span />
-        </div>
-        {open && (
-          <div className="border-t border-border bg-background px-6 py-4 md:hidden">
-            {nav.map(([l, h]) => (
-              <a
-                key={h}
-                href={h}
-                onClick={() => setOpen(false)}
-                className="block py-3 text-muted-foreground"
-              >
-                {l}
-              </a>
-            ))}
+            <a
+              href="tel:+923338581087"
+              className="flex items-center justify-center gap-2 border border-gold/60 px-5 py-3 font-semibold text-gold transition-colors hover:bg-gold hover:text-primary-foreground"
+            >
+              <Phone className="h-4 w-4" />
+              0333 858 1087
+            </a>
           </div>
-        )}
-      </header>
+        </nav>
+      )}
+    </header>
+  );
+}
+
+function Index() {
+  return (
+    <div className="overflow-x-hidden">
+      <LandingHeader />
 
       {/* HERO */}
-      <section id="top" className="relative flex min-h-screen items-center pt-20">
+      <section id="top" className="relative flex min-h-screen items-center pt-28 lg:pt-32">
         <img
           src={hero}
           alt="Building construction site with reinforced concrete structure"
@@ -516,13 +761,44 @@ function Index() {
                   <span className="font-display text-sm text-gold">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-1 text-2xl leading-tight">{s.t}</h3>
+                  <h3 className="mt-1 text-2xl leading-tight">
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: s.slug }}
+                      className="transition-colors after:absolute after:inset-0 hover:text-gold"
+                    >
+                      {s.t}
+                    </Link>
+                  </h3>
                   <p className="mt-3 text-sm text-muted-foreground">{s.d}</p>
                 </div>
                 <span className="bg-gold-gradient absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 group-hover:w-full" />
               </article>
             ))}
           </div>
+          <p className="mt-10 text-center text-sm text-muted-foreground">
+            More services:{" "}
+            {servicePages
+              .filter((x) =>
+                ["house-construction-lahore", "renovation-upgradation-lahore"].includes(x.slug),
+              )
+              .map((x, i) => (
+                <span key={x.slug}>
+                  {i > 0 && " · "}
+                  <Link
+                    to="/services/$slug"
+                    params={{ slug: x.slug }}
+                    className="text-gold hover:underline"
+                  >
+                    {x.name}
+                  </Link>
+                </span>
+              ))}
+            {" · "}
+            <Link to="/services" className="text-gold hover:underline">
+              All services →
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -729,77 +1005,14 @@ function Index() {
               Illustrative budgeting only. Final rates depend on current material prices, location,
               design and site conditions; request a formal quotation before making decisions.
             </p>
+            <Link
+              to="/cost-calculator"
+              className="mt-6 inline-flex items-center gap-2 font-semibold text-gold hover:underline"
+            >
+              How this estimate works <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-          <div className="border border-border bg-card p-6 md:p-8">
-            <div className="mb-6 flex items-center gap-3">
-              <Calculator className="h-6 w-6 text-gold" />
-              <h3 className="text-2xl">Estimate your project</h3>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block text-sm text-muted-foreground">
-                Covered area per floor (sq. ft.)
-                <input
-                  type="number"
-                  min="1"
-                  value={area}
-                  onChange={(e) => setArea(e.target.value)}
-                  className="mt-2 w-full border border-input bg-transparent px-3 py-3 text-foreground outline-none focus:border-gold"
-                />
-              </label>
-              <label className="block text-sm text-muted-foreground">
-                Number of floors
-                <select
-                  value={floors}
-                  onChange={(e) => setFloors(e.target.value)}
-                  className="mt-2 w-full border border-input bg-background px-3 py-3 text-foreground outline-none focus:border-gold"
-                >
-                  <option value="1">1 floor</option>
-                  <option value="2">2 floors</option>
-                  <option value="3">3 floors</option>
-                  <option value="4">4 floors</option>
-                  <option value="5">5 floors</option>
-                </select>
-              </label>
-              <label className="block text-sm text-muted-foreground sm:col-span-2">
-                Construction standard
-                <select
-                  value={rate}
-                  onChange={(e) => setRate(e.target.value)}
-                  className="mt-2 w-full border border-input bg-background px-3 py-3 text-foreground outline-none focus:border-gold"
-                >
-                  <option value="3000">Grey structure — PKR 3,000 / sq. ft.</option>
-                  <option value="4500">Standard finishing — PKR 4,500 / sq. ft.</option>
-                  <option value="6000">Premium finishing — PKR 6,000 / sq. ft.</option>
-                </select>
-              </label>
-            </div>
-            <label className="mt-5 flex cursor-pointer items-center gap-3 text-sm text-muted-foreground">
-              <input
-                type="checkbox"
-                checked={contingency}
-                onChange={(e) => setContingency(e.target.checked)}
-                className="h-4 w-4 accent-yellow-600"
-              />
-              Include 10% contingency allowance
-            </label>
-            <div className="mt-7 border-t border-border pt-6">
-              <p className="text-sm uppercase tracking-widest text-muted-foreground">
-                Estimated construction budget
-              </p>
-              <p className="mt-2 break-words font-display text-3xl text-gold-gradient md:text-4xl">
-                {formatPKR(estimatedCost)}
-              </p>
-              <p className="mt-2 text-xs text-muted-foreground">
-                Total covered area: {(areaValue * floorValue).toLocaleString("en-PK")} sq. ft.
-              </p>
-              <a
-                href="#contact"
-                className="mt-6 inline-flex items-center gap-2 bg-gold-gradient px-6 py-3 font-semibold text-primary-foreground"
-              >
-                Request an accurate quote <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
+          <CostCalculator />
         </div>
       </section>
 
@@ -833,6 +1046,23 @@ function Index() {
             <p className="mt-10 text-xs tracking-[0.3em] text-muted-foreground">
               REGISTERED WITH FBR PAKISTAN
             </p>
+            <div className="mt-8 overflow-hidden border border-border">
+              <iframe
+                src={MAPS_EMBED_URL}
+                title={`${SITE_NAME} on Google Maps`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-64 w-full"
+              />
+            </div>
+            <a
+              href={REVIEW_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 border border-gold/60 px-5 py-3 text-sm font-semibold text-gold transition-colors hover:bg-gold hover:text-primary-foreground"
+            >
+              Review us on Google <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
           <form
             onSubmit={(e) => {
@@ -869,8 +1099,9 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border py-12">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
+      <footer className="border-t border-border">
+        <SiteLinks />
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-12 md:flex-row">
           <img
             decoding="async"
             loading="lazy"

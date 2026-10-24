@@ -12,47 +12,32 @@ Responsive company website built with React, TypeScript, TanStack Router, Vite a
 ## Project structure
 ```
 .
-├── public/             Favicons, web manifest, robots.txt (served as-is)
-<<<<<<< HEAD
-<<<<<<< HEAD
+├── public/             Favicons, social preview image, robots.txt, sitemap.xml, blog/ images
+├── scripts/            generate-sitemap.mjs (builds public/sitemap.xml)
 └── src/
     ├── assets/         Optimised WebP images (one file per picture)
-    ├── components/     Shared UI: CompanyPageShell, ThemeToggle, FloatingActions, ScrollReveal
-    ├── routes/         One file per page (index, about, services, leadership, selected-projects, ...)
-    ├── hooks/ lib/     Small helpers
+    ├── components/     Shared UI: CompanyPageShell, SiteLinks, CostCalculator, Markdown, ...
+    ├── content/
+    │   ├── blog/       One .md file per blog article (see "Publishing a blog article")
+    │   └── services.ts Text for the six service pages
+    ├── routes/         One file per page (home, services, services/<slug>, blog, blog/<slug>, cost-calculator, ...)
+    ├── lib/            seo.ts (SEO settings and helpers), markdown.ts, blog.ts
     ├── test/           Routing tests
     └── styles.css      Theme, animations and global styles
 ```
-To add a photo: save it as an optimised `.webp` (about 1100-1300px wide) in `src/assets/` and import it from the page.
-=======
-=======
->>>>>>> ae5426a (Upload website files)
-├── src/
-│   ├── assets/         Optimised WebP images used by the pages (only what the code imports)
-│   ├── components/     Shared UI: CompanyPageShell, ThemeToggle, FloatingActions, ScrollReveal
-│   ├── routes/         One file per page (index, about, services, leadership, selected-projects, ...)
-│   ├── hooks/ lib/     Small helpers
-│   ├── test/           Routing tests
-│   └── styles.css      Theme, animations and global styles
-├── original-images/    Full-quality source images (not bundled); unused/ holds leftovers not used by any page
-└── .lovable/           Project metadata
-```
-To add a photo: put the original in `original-images/`, save an optimised `.webp` (about 1100px wide) in `src/assets/`, then import it from the page.
-<<<<<<< HEAD
->>>>>>> e99da09 (updated pictures or files)
-=======
-=======
-└── src/
-    ├── assets/         Optimised WebP images (one file per picture)
-    ├── components/     Shared UI: CompanyPageShell, ThemeToggle, FloatingActions, ScrollReveal
-    ├── routes/         One file per page (index, about, services, leadership, selected-projects, ...)
-    ├── hooks/ lib/     Small helpers
-    ├── test/           Routing tests
-    └── styles.css      Theme, animations and global styles
-```
-To add a photo: save it as an optimised `.webp` (about 1100-1300px wide) in `src/assets/` and import it from the page.
->>>>>>> adac534 (Deleted All the Duplicated files, now the folder structure is Good and everything is working according to the plan)
->>>>>>> ae5426a (Upload website files)
+
+## SEO
+- All SEO settings live in `src/lib/seo.ts`: site URL, business details, Google Search Console code, Google Business Profile and review links, social profiles.
+- Every page gets a unique title and description, a canonical URL, Open Graph / Twitter tags and structured data (business, breadcrumbs, services, blog posts).
+- `public/sitemap.xml` is rebuilt automatically by `npm run build`. After adding a blog article, run `npm run sitemap` (or just build) and deploy.
+- After the site is live: add the site to Google Search Console, submit `https://www.dawudniazassociates.com/sitemap.xml`, paste the verification code into `GOOGLE_SITE_VERIFICATION`, and paste your Google Business Profile share and review links into `GOOGLE_BUSINESS_PROFILE_URL` and `GOOGLE_REVIEW_URL`.
+- Make sure `dawudniazassociates.com` (without www) redirects to `https://www.dawudniazassociates.com` at your hosting or DNS provider, and that HTTPS is on.
+
+## Publishing a blog article
+1. Copy `src/content/blog/_TEMPLATE.md` and rename it, for example `2026-10-25-grey-structure-vs-finishing.md`.
+2. Fill in the top section (title, description, date, category, optional image) and write the article below it using Markdown (headings with `##`, lists, tables, links).
+3. Optional picture: save it as `.webp` (about 1200px wide) in `public/blog/` and set `image: /blog/your-picture.webp`.
+4. Run `npm run sitemap`, then deploy. Add `draft: true` to keep an article hidden.
 
 ## Main pages
 - `/` Home

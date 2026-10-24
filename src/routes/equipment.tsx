@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import buildingSite from "@/assets/equipment-building-site.webp";
 import earthmoving from "@/assets/equipment-earthmoving-machinery.webp";
@@ -6,16 +7,19 @@ import largeSite from "@/assets/equipment-large-construction-site.webp";
 import residential from "@/assets/residential-building-example.webp";
 
 export const Route = createFileRoute("/equipment")({
-  head: () => ({
-    meta: [
-      { title: "Equipment & Resources | Dawud Niaz Engineers and Contractors" },
-      {
-        name: "description",
-        content:
-          "Construction equipment, machinery and site resource capabilities of Dawud Niaz Engineers and Contractors.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Equipment & Resources | Dawud Niaz Engineers and Contractors",
+      description:
+        "Construction equipment, machinery and site resource capabilities of Dawud Niaz Engineers and Contractors in Lahore.",
+      path: "/equipment",
+      jsonLd: [
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Equipment", path: "/equipment" },
+        ]),
+      ],
+    }),
   component: EquipmentPage,
 });
 

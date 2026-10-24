@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import ceo from "@/assets/engr-muhammad-aun-niaz-profile.webp";
 import founder from "@/assets/niaz-ahmad-founder.webp";
@@ -8,16 +9,19 @@ import ali from "@/assets/ali-faisal-legal-advisor.webp";
 import dawud from "@/assets/dawud-niaz.webp";
 
 export const Route = createFileRoute("/leadership")({
-  head: () => ({
-    meta: [
-      { title: "Leadership | Dawud Niaz Engineers and Contractors" },
-      {
-        name: "description",
-        content:
-          "Meet the leadership and professional team at Dawud Niaz Engineers and Contractors.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Leadership | Dawud Niaz Engineers and Contractors",
+      description:
+        "Meet the leadership and professional team at Dawud Niaz Engineers and Contractors, from the founder to the next generation.",
+      path: "/leadership",
+      jsonLd: [
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Leadership", path: "/leadership" },
+        ]),
+      ],
+    }),
   component: LeadershipPage,
 });
 

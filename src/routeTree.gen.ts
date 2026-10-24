@@ -11,12 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
 import { Route as EquipmentRouteImport } from './routes/equipment'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as OurTeamRouteImport } from './routes/our-team'
 import { Route as SelectedProjectsRouteImport } from './routes/selected-projects'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ServicesSlugRouteImport } from './routes/services_.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -26,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CostCalculatorRoute = CostCalculatorRouteImport.update({
+  id: '/cost-calculator',
+  path: '/cost-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EquipmentRoute = EquipmentRouteImport.update({
@@ -58,80 +67,123 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services_/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/cost-calculator': typeof CostCalculatorRoute
   '/equipment': typeof EquipmentRoute
   '/gallery': typeof GalleryRoute
   '/leadership': typeof LeadershipRoute
   '/our-team': typeof OurTeamRoute
   '/selected-projects': typeof SelectedProjectsRoute
   '/services': typeof ServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/cost-calculator': typeof CostCalculatorRoute
   '/equipment': typeof EquipmentRoute
   '/gallery': typeof GalleryRoute
   '/leadership': typeof LeadershipRoute
   '/our-team': typeof OurTeamRoute
   '/selected-projects': typeof SelectedProjectsRoute
   '/services': typeof ServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/cost-calculator': typeof CostCalculatorRoute
   '/equipment': typeof EquipmentRoute
   '/gallery': typeof GalleryRoute
   '/leadership': typeof LeadershipRoute
   '/our-team': typeof OurTeamRoute
   '/selected-projects': typeof SelectedProjectsRoute
   '/services': typeof ServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/services_/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/cost-calculator'
     | '/equipment'
     | '/gallery'
     | '/leadership'
     | '/our-team'
     | '/selected-projects'
     | '/services'
+    | '/blog/$slug'
+    | '/services/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/cost-calculator'
     | '/equipment'
     | '/gallery'
     | '/leadership'
     | '/our-team'
     | '/selected-projects'
     | '/services'
+    | '/blog/$slug'
+    | '/services/$slug'
+    | '/blog'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/cost-calculator'
     | '/equipment'
     | '/gallery'
     | '/leadership'
     | '/our-team'
     | '/selected-projects'
     | '/services'
+    | '/blog/$slug'
+    | '/services_/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CostCalculatorRoute: typeof CostCalculatorRoute
   EquipmentRoute: typeof EquipmentRoute
   GalleryRoute: typeof GalleryRoute
   LeadershipRoute: typeof LeadershipRoute
   OurTeamRoute: typeof OurTeamRoute
   SelectedProjectsRoute: typeof SelectedProjectsRoute
   ServicesRoute: typeof ServicesRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -148,6 +200,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cost-calculator': {
+      id: '/cost-calculator'
+      path: '/cost-calculator'
+      fullPath: '/cost-calculator'
+      preLoaderRoute: typeof CostCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/equipment': {
@@ -192,18 +251,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services_/$slug': {
+      id: '/services_/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CostCalculatorRoute: CostCalculatorRoute,
   EquipmentRoute: EquipmentRoute,
   GalleryRoute: GalleryRoute,
   LeadershipRoute: LeadershipRoute,
   OurTeamRoute: OurTeamRoute,
   SelectedProjectsRoute: SelectedProjectsRoute,
   ServicesRoute: ServicesRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

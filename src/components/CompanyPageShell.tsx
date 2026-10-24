@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import logoMark from "@/assets/dawud-niaz-logo-mark.webp";
 import ThemeToggle from "@/components/ThemeToggle";
+import SiteLinks from "@/components/SiteLinks";
 
 const links = [
   ["Home", "/"],
@@ -11,6 +12,8 @@ const links = [
   ["Gallery", "/gallery"],
   ["Equipment", "/equipment"],
   ["Our Team", "/our-team"],
+  ["Cost Calculator", "/cost-calculator"],
+  ["Blog", "/blog"],
   ["About", "/about"],
 ] as const;
 export default function CompanyPageShell({
@@ -90,6 +93,7 @@ export default function CompanyPageShell({
         <div className="mx-auto max-w-7xl px-5 py-14 md:py-20">{children}</div>
       </main>
       <footer className="border-t border-border bg-surface">
+        <SiteLinks />
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 md:flex-row md:items-center md:justify-between">
           <p className="font-semibold">Dawud Niaz Engineers and Contractors</p>
           <p className="text-sm text-muted-foreground">

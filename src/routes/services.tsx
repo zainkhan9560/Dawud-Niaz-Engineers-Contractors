@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import architecture from "@/assets/architectural-drawing-workspace.webp";
 import structural from "@/assets/structural-building-works.webp";
@@ -7,39 +8,46 @@ import residential from "@/assets/residential-building-example.webp";
 import inspection from "@/assets/construction-site-review-team.webp";
 import house from "@/assets/residential-house-transformation.webp";
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Our Services | Dawud Niaz Engineers and Contractors" },
-      {
-        name: "description",
-        content:
-          "Explore architectural drawings, structural drawings, construction cost estimation, building construction, renovation, project management and related engineering services in Lahore.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Construction & Design Services in Lahore | Dawud Niaz",
+      description:
+        "Architectural drawings, structural drawings, cost estimation, house and building construction and renovation in Lahore by Dawud Niaz Engineers and Contractors.",
+      path: "/services",
+      jsonLd: [
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+        ]),
+      ],
+    }),
   component: ServicesPage,
 });
 const featured = [
   {
     title: "Architectural Drawings",
+    slug: "architectural-drawings-lahore",
     desc: "Architectural concepts, floor plans, elevations, working drawings, space planning and design coordination for houses, apartments and commercial buildings.",
     img: architecture,
     alt: "Architectural drawings and design workspace",
   },
   {
     title: "Structural Drawings",
+    slug: "structural-drawings-lahore",
     desc: "Building structure drawings and coordination for foundations, columns, beams, slabs, reinforced concrete elements and structural construction requirements.",
     img: structural,
     alt: "Structural building works and concrete structure",
   },
   {
     title: "Construction Cost Estimation",
+    slug: "construction-cost-estimation-lahore",
     desc: "Quantity take-offs and preliminary budgeting to help plan materials, labour, finishing and project costs before construction starts.",
     img: planning,
     alt: "Construction planning and estimation documents",
   },
   {
     title: "Building Construction",
+    slug: "building-construction-lahore",
     desc: "Residential, apartment and commercial building execution with project coordination, site supervision, quality checks and practical resource planning.",
     img: residential,
     alt: "Residential building construction example",
@@ -101,13 +109,47 @@ function ServicesPage() {
               <p className="eyebrow">Core service 0{i + 1}</p>
               <h2 className="mt-2 text-2xl md:text-3xl">{s.title}</h2>
               <p className="mt-3 leading-7 text-muted-foreground">{s.desc}</p>
-              <a href="/#contact" className="mt-5 inline-flex font-semibold text-gold">
-                Discuss this service →
-              </a>
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: s.slug }}
+                  className="inline-flex font-semibold text-gold hover:underline"
+                >
+                  Learn more →
+                </Link>
+                <a
+                  href="/#contact"
+                  className="inline-flex font-semibold text-muted-foreground hover:text-gold"
+                >
+                  Discuss this service
+                </a>
+              </div>
             </div>
           </article>
         ))}
       </div>
+      <p className="mt-8 text-muted-foreground">
+        Also see:{" "}
+        <Link
+          to="/services/$slug"
+          params={{ slug: "house-construction-lahore" }}
+          className="text-gold hover:underline"
+        >
+          House construction in Lahore
+        </Link>
+        {" · "}
+        <Link
+          to="/services/$slug"
+          params={{ slug: "renovation-upgradation-lahore" }}
+          className="text-gold hover:underline"
+        >
+          Renovation and upgradation
+        </Link>
+        {" · "}
+        <Link to="/cost-calculator" className="text-gold hover:underline">
+          Cost calculator
+        </Link>
+      </p>
       <section className="mt-20">
         <p className="eyebrow mb-3">Additional capabilities from the company profile</p>
         <h2 className="max-w-3xl text-3xl md:text-5xl">

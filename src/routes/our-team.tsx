@@ -1,18 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import ceo from "@/assets/engr-muhammad-aun-niaz-profile.webp";
 import site from "@/assets/structural-site-inspection-team.webp";
 export const Route = createFileRoute("/our-team")({
-  head: () => ({
-    meta: [
-      { title: "Our Team | Dawud Niaz Engineers and Contractors" },
-      {
-        name: "description",
-        content:
-          "Meet the technical, management and site-operation functions described in the Dawud Niaz company profile.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Our Team | Dawud Niaz Engineers and Contractors",
+      description:
+        "Meet the technical, management and site-operation functions that deliver projects at Dawud Niaz Engineers and Contractors.",
+      path: "/our-team",
+      jsonLd: [
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Our Team", path: "/our-team" },
+        ]),
+      ],
+    }),
   component: TeamPage,
 });
 const groups = [

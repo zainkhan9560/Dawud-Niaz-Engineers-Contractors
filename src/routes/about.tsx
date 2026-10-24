@@ -1,17 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import hero from "@/assets/building-construction-hero.webp";
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Us | Dawud Niaz Engineers and Contractors" },
-      {
-        name: "description",
-        content:
-          "Learn about Dawud Niaz Engineers and Contractors, its construction services, values and project delivery approach.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "About Dawud Niaz Engineers and Contractors | Lahore",
+      description:
+        "Learn about Dawud Niaz Engineers and Contractors: our construction services, values and project delivery approach in Lahore, Pakistan.",
+      path: "/about",
+      jsonLd: [
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "About Us", path: "/about" },
+        ]),
+      ],
+    }),
   component: AboutPage,
 });
 const values = [

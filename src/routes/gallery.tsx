@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import a from "@/assets/building-construction-hero.webp";
 import b from "@/assets/architectural-drawing-workspace.webp";
@@ -10,16 +11,19 @@ import g from "@/assets/structural-building-works.webp";
 import h from "@/assets/construction-site-review-team.webp";
 import i from "@/assets/architectural-design-example.webp";
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Project Gallery | Dawud Niaz Engineers and Contractors" },
-      {
-        name: "description",
-        content:
-          "Explore visual examples of architectural planning, structural works, residential buildings and construction processes.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "Project Gallery | Dawud Niaz Engineers and Contractors",
+      description:
+        "Visual examples of architectural planning, structural works, residential buildings and construction processes.",
+      path: "/gallery",
+      jsonLd: [
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Gallery", path: "/gallery" },
+        ]),
+      ],
+    }),
   component: GalleryPage,
 });
 const items = [
