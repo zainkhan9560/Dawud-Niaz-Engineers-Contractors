@@ -9,9 +9,9 @@ import residential from "@/assets/residential-building-example.webp";
 export const Route = createFileRoute("/equipment")({
   head: () =>
     pageHead({
-      title: "Equipment & Resources | Dawud Niaz Engineers and Contractors",
+      title: "Equipment & Resources | Dawud Niaz Associates Engineers and Contractors",
       description:
-        "Construction equipment, machinery and site resource capabilities of Dawud Niaz Engineers and Contractors in Lahore.",
+        "Construction equipment, machinery and site resource capabilities of Dawud Niaz Associates Engineers and Contractors in Lahore.",
       path: "/equipment",
       jsonLd: [
         breadcrumbLd([

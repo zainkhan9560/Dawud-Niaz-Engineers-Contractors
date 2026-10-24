@@ -6,9 +6,9 @@ import site from "@/assets/structural-site-inspection-team.webp";
 export const Route = createFileRoute("/our-team")({
   head: () =>
     pageHead({
-      title: "Our Team | Dawud Niaz Engineers and Contractors",
+      title: "Our Team | Dawud Niaz Associates Engineers and Contractors",
       description:
-        "Meet the technical, management and site-operation functions that deliver projects at Dawud Niaz Engineers and Contractors.",
+        "Meet the technical, management and site-operation functions that deliver projects at Dawud Niaz Associates Engineers and Contractors.",
       path: "/our-team",
       jsonLd: [
         breadcrumbLd([

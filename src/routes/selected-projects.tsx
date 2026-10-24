@@ -20,7 +20,7 @@ export const Route = createFileRoute("/selected-projects")({
     pageHead({
       title: "Selected Construction Projects | Dawud Niaz Engineers",
       description:
-        "Selected banking, commercial, industrial and residential construction and renovation projects by Dawud Niaz Engineers and Contractors.",
+        "Selected banking, commercial, industrial and residential construction and renovation projects by Dawud Niaz Associates Engineers and Contractors.",
       path: "/selected-projects",
       jsonLd: [
         breadcrumbLd([

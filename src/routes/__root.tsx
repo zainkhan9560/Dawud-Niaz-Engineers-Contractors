@@ -82,14 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#18140f" },
-      { title: "Dawud Niaz Engineers and Contractors | Lahore, Pakistan" },
+      { title: "Dawud Niaz Associates Engineers and Contractors | Lahore, Pakistan" },
       {
         name: "description",
         content:
           "Architectural drawings, structural drawings, construction cost estimation and building construction in Lahore, Pakistan.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Dawud Niaz Engineers and Contractors" },
+      { property: "og:site_name", content: "Dawud Niaz Associates Engineers and Contractors" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

@@ -2,7 +2,7 @@
  * Central SEO settings. Change values here and every page, the structured data and the sitemap follow.
  */
 export const SITE_URL = "https://www.dawudniazassociates.com";
-export const SITE_NAME = "Dawud Niaz Engineers and Contractors";
+export const SITE_NAME = "Dawud Niaz Associates Engineers and Contractors";
 export const SITE_TAGLINE = "Engineering Ideas. Building with Purpose.";
 
 export const BUSINESS = {
@@ -125,7 +125,7 @@ export function businessLd(services: { name: string; path: string }[]) {
     logo: LOGO_URL,
     image: DEFAULT_OG_IMAGE,
     description:
-      "Architectural drawings, structural drawings, construction cost estimation and building construction in Lahore, Pakistan.",
+      "Construction company in Lahore, Pakistan: architectural design, structural engineering, house map design, cost estimation, BOQ services, grey structure and turnkey construction.",
     telephone: BUSINESS.phone,
     email: BUSINESS.email,
     address: {

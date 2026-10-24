@@ -97,8 +97,20 @@
     font-weight: 400;
     letter-spacing: -0.01em;
   }
-  img {
+  img,
+  video {
     max-width: 100%;
+  }
+  html,
+  body {
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3,
+  p,
+  li {
+    overflow-wrap: break-word;
   }
   ::selection {
     background: color-mix(in oklab, var(--gold) 24%, white);

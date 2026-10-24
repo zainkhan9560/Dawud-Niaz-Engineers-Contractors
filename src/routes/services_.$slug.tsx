@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import { getService, servicePath, services } from "@/content/services";
+import MutedVideo from "@/components/MutedVideo";
+import { serviceVideos } from "@/content/videos";
 import { BUSINESS_ID, absoluteUrl, breadcrumbLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/services_/$slug")({
@@ -42,6 +44,7 @@ function ServiceDetailPage() {
   const { slug } = Route.useParams();
   const s = getService(slug);
   if (!s) throw notFound();
+  const video = serviceVideos[s.slug];
   const related = s.related.flatMap((r) => services.filter((x) => x.slug === r));
   return (
     <CompanyPageShell
@@ -78,6 +81,23 @@ function ServiceDetailPage() {
           </a>
         </div>
       </div>
+
+      {video && (
+        <section className="mt-20 grid gap-8 md:grid-cols-[minmax(0,260px)_1fr] md:items-center">
+          <MutedVideo
+            src={video.src}
+            poster={video.poster}
+            title={video.title}
+            label={video.caption}
+            className="mx-auto aspect-[9/16] w-full max-w-[260px]"
+          />
+          <div>
+            <p className="eyebrow mb-3">On site</p>
+            <h2 className="text-3xl md:text-4xl">{video.title}</h2>
+            <p className="mt-3 max-w-xl text-muted-foreground">{video.caption}</p>
+          </div>
+        </section>
+      )}
 
       <section className="mt-20">
         <p className="eyebrow mb-3">How we work</p>

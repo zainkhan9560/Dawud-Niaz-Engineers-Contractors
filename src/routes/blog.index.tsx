@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import { formatDate, posts } from "@/lib/blog";
+import blogCover from "@/assets/project-building-structure.webp";
 import { breadcrumbLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/")({
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/blog/")({
     pageHead({
       title: "Construction Guides & Articles | Dawud Niaz Engineers",
       description:
-        "Practical construction, drawings and cost-planning guides for building in Lahore and across Pakistan, from Dawud Niaz Engineers and Contractors.",
+        "Practical construction, drawings and cost-planning guides for building in Lahore and across Pakistan, from Dawud Niaz Associates Engineers and Contractors.",
       path: "/blog",
       jsonLd: [
         breadcrumbLd([
@@ -29,8 +30,27 @@ function BlogIndex() {
           Building knowledge, <span className="text-gold-gradient">explained simply.</span>
         </>
       }
-      intro="Practical guides on drawings, construction stages, budgeting and choosing a contractor, written by the team at Dawud Niaz Engineers and Contractors."
+      intro="Practical guides on drawings, construction stages, budgeting and choosing a contractor, written by the team at Dawud Niaz Associates Engineers and Contractors."
     >
+      <div className="relative mb-12 aspect-[21/9] min-h-[200px] w-full overflow-hidden border border-border">
+        <img
+          src={blogCover}
+          alt="Multi-storey building under construction with brick walls and concrete slabs"
+          decoding="async"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[50%_45%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+          <p className="eyebrow mb-3 flex items-center gap-3">
+            <span className="h-px w-10 bg-gold" />
+            Guides & articles
+          </p>
+          <p className="max-w-2xl font-display text-2xl leading-tight md:text-4xl">
+            Practical knowledge from the <span className="text-gold-gradient">building site.</span>
+          </p>
+        </div>
+      </div>
       {posts.length === 0 ? (
         <p className="text-muted-foreground">New articles are coming soon.</p>
       ) : (

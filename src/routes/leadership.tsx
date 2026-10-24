@@ -11,9 +11,9 @@ import dawud from "@/assets/dawud-niaz.webp";
 export const Route = createFileRoute("/leadership")({
   head: () =>
     pageHead({
-      title: "Leadership | Dawud Niaz Engineers and Contractors",
+      title: "Leadership | Dawud Niaz Associates Engineers and Contractors",
       description:
-        "Meet the leadership and professional team at Dawud Niaz Engineers and Contractors, from the founder to the next generation.",
+        "Meet the leadership and professional team at Dawud Niaz Associates Engineers and Contractors, from the founder to the next generation.",
       path: "/leadership",
       jsonLd: [
         breadcrumbLd([
@@ -39,7 +39,7 @@ const founderPerson: Person = {
   name: "Niaz Ahmad",
   role: "Founder",
   image: founder,
-  note: "Founder of Dawud Niaz Engineers and Contractors.",
+  note: "Founder of Dawud Niaz Associates Engineers and Contractors.",
   pos: "50% 15%",
 };
 
@@ -119,7 +119,7 @@ function LeadershipPage() {
           Experienced people. <span className="text-gold-gradient">Shared responsibility.</span>
         </>
       }
-      intro="Meet the people connected with the leadership, professional guidance and future of Dawud Niaz Engineers and Contractors."
+      intro="Meet the people connected with the leadership, professional guidance and future of Dawud Niaz Associates Engineers and Contractors."
     >
       <div
         className="org-tree"

@@ -66,7 +66,7 @@ export function toPost(path: string, raw: string): Post | null {
     category: get("category") || "Construction Guide",
     ...(image ? { image } : {}),
     ...(imageAlt ? { imageAlt } : {}),
-    author: get("author") || "Dawud Niaz Engineers and Contractors",
+    author: get("author") || "Dawud Niaz Associates Engineers and Contractors",
     readingMinutes: readingMinutes(body),
     body,
   };

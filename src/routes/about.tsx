@@ -5,9 +5,9 @@ import hero from "@/assets/building-construction-hero.webp";
 export const Route = createFileRoute("/about")({
   head: () =>
     pageHead({
-      title: "About Dawud Niaz Engineers and Contractors | Lahore",
+      title: "About Us | Construction Company in Lahore | Dawud Niaz",
       description:
-        "Learn about Dawud Niaz Engineers and Contractors: our construction services, values and project delivery approach in Lahore, Pakistan.",
+        "About Dawud Niaz Associates Engineers and Contractors, a construction company in Lahore: civil engineers, architects and construction consultants delivering design, estimation and building work.",
       path: "/about",
       jsonLd: [
         breadcrumbLd([
@@ -35,7 +35,7 @@ function AboutPage() {
           Engineering ideas. <span className="text-gold-gradient">Building with purpose.</span>
         </>
       }
-      intro="Dawud Niaz Engineers and Contractors provides building-focused design, cost planning and construction services for residential, commercial and industrial projects."
+      intro="Dawud Niaz Associates Engineers and Contractors provides building-focused design, cost planning and construction services for residential, commercial and industrial projects."
     >
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <img

@@ -1,18 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { breadcrumbLd, pageHead } from "@/lib/seo";
 import CompanyPageShell from "@/components/CompanyPageShell";
+import { services as allServices } from "@/content/services";
 import architecture from "@/assets/architectural-drawing-workspace.webp";
 import structural from "@/assets/structural-building-works.webp";
 import planning from "@/assets/construction-planning-example.webp";
 import residential from "@/assets/residential-building-example.webp";
 import inspection from "@/assets/construction-site-review-team.webp";
-import house from "@/assets/residential-house-transformation.webp";
+import renovationImg from "@/assets/house-renovation-before-after.webp";
 export const Route = createFileRoute("/services")({
   head: () =>
     pageHead({
-      title: "Construction & Design Services in Lahore | Dawud Niaz",
+      title: "Construction Services Lahore | Design, BOQ & Turnkey | Dawud Niaz",
       description:
-        "Architectural drawings, structural drawings, cost estimation, house and building construction and renovation in Lahore by Dawud Niaz Engineers and Contractors.",
+        "Construction services in Lahore: architectural design, structural engineering, house map design, cost estimation, BOQ, grey structure and turnkey construction.",
       path: "/services",
       jsonLd: [
         breadcrumbLd([
@@ -52,6 +53,13 @@ const featured = [
     img: residential,
     alt: "Residential building construction example",
   },
+  {
+    title: "Renovation & Upgradation",
+    slug: "renovation-upgradation-lahore",
+    desc: "House and building renovation planned in phases: survey, civil modifications, plaster, flooring, ceilings and finishing, with site supervision from start to handover.",
+    img: renovationImg,
+    alt: "House renovation before and after: scaffolding and plaster removal beside a finished house",
+  },
 ];
 const capabilities = [
   [
@@ -88,15 +96,17 @@ function ServicesPage() {
           Engineering services for <span className="text-gold-gradient">buildings that last.</span>
         </>
       }
-      intro="Our company profile describes a broad range of design, construction and project-delivery capabilities. The four core services are featured first, followed by supporting services and capabilities."
+      intro="Our company profile describes a broad range of design, construction and project-delivery capabilities. The five core services are featured first, followed by supporting services and capabilities."
     >
       <div className="grid gap-7 md:grid-cols-2">
         {featured.map((s, i) => (
           <article
             key={s.title}
-            className="group overflow-hidden border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            className={`group overflow-hidden border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+              i === 4 ? "md:col-span-2 md:grid md:grid-cols-2" : ""
+            }`}
           >
-            <div className="aspect-[16/9] overflow-hidden">
+            <div className={`overflow-hidden ${i === 4 ? "aspect-[16/9] md:aspect-auto" : "aspect-[16/9]"}`}>
               <img
                 decoding="async"
                 src={s.img}
@@ -128,28 +138,35 @@ function ServicesPage() {
           </article>
         ))}
       </div>
-      <p className="mt-8 text-muted-foreground">
-        Also see:{" "}
-        <Link
-          to="/services/$slug"
-          params={{ slug: "house-construction-lahore" }}
-          className="text-gold hover:underline"
-        >
-          House construction in Lahore
-        </Link>
-        {" · "}
-        <Link
-          to="/services/$slug"
-          params={{ slug: "renovation-upgradation-lahore" }}
-          className="text-gold hover:underline"
-        >
-          Renovation and upgradation
-        </Link>
-        {" · "}
-        <Link to="/cost-calculator" className="text-gold hover:underline">
-          Cost calculator
-        </Link>
-      </p>
+      <section className="mt-16" aria-labelledby="all-services">
+        <p className="eyebrow mb-3">All services</p>
+        <h2 id="all-services" className="max-w-3xl text-3xl md:text-4xl">
+          Construction services in Lahore
+        </h2>
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {allServices.map((x) => (
+            <li key={x.slug}>
+              <Link
+                to="/services/$slug"
+                params={{ slug: x.slug }}
+                className="block h-full border border-border bg-surface p-5 transition-colors hover:border-gold/60 hover:bg-card"
+              >
+                <span className="text-lg text-foreground">{x.name}</span>
+                <span className="mt-1 block text-sm text-muted-foreground">
+                  {x.metaDescription.split(":")[0]}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-muted-foreground">
+          Budgeting?{" "}
+          <Link to="/cost-calculator" className="text-gold hover:underline">
+            Try the cost calculator
+          </Link>
+          .
+        </p>
+      </section>
       <section className="mt-20">
         <p className="eyebrow mb-3">Additional capabilities from the company profile</p>
         <h2 className="max-w-3xl text-3xl md:text-5xl">

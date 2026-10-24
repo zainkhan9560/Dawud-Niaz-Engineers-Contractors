@@ -3,7 +3,7 @@ import structural from "@/assets/structural-building-works.webp";
 import planning from "@/assets/construction-planning-example.webp";
 import residential from "@/assets/residential-building-example.webp";
 import building from "@/assets/structural-site-inspection-team.webp";
-import renovation from "@/assets/residential-house-transformation.webp";
+import renovation from "@/assets/house-renovation-before-after.webp";
 
 export type ServicePage = {
   slug: string;
@@ -27,14 +27,14 @@ export const services: ServicePage[] = [
   {
     slug: "architectural-drawings-lahore",
     name: "Architectural Drawings",
-    metaTitle: "Architectural Drawings in Lahore | Dawud Niaz Engineers",
+    metaTitle: "Architect in Lahore | Architectural Design | Dawud Niaz",
     metaDescription:
-      "Architectural drawings in Lahore: floor plans, elevations, sections and working drawings for houses, apartments and commercial buildings.",
+      "Architect in Lahore for architectural design: floor plans, elevations, sections and working drawings for houses, apartments and commercial buildings.",
     eyebrow: "Services · Design",
-    title: "Architectural drawings in Lahore",
+    title: "Architectural design and drawings in Lahore",
     accent: "planned to be built.",
     intro:
-      "Good drawings save time and money on site. We prepare architectural drawings for houses, apartments and commercial buildings in Lahore, from the first concept layout to working drawings that the construction team can build from.",
+      "Looking for an architect in Lahore? Good drawings save time and money on site. We prepare architectural design and drawings for houses, apartments and commercial buildings in Lahore, from the first concept layout to working drawings that the construction team can build from.",
     image: architecture,
     imageAlt: "Architectural floor plans, model and drawing tools on a design desk",
     includes: [
@@ -82,6 +82,7 @@ export const services: ServicePage[] = [
       },
     ],
     related: [
+      "house-map-design-lahore",
       "structural-drawings-lahore",
       "house-construction-lahore",
       "construction-cost-estimation-lahore",
@@ -90,14 +91,14 @@ export const services: ServicePage[] = [
   {
     slug: "structural-drawings-lahore",
     name: "Structural Drawings",
-    metaTitle: "Structural Drawings in Lahore | Dawud Niaz Engineers",
+    metaTitle: "Structural Engineer in Lahore | Structural Drawings | Dawud Niaz",
     metaDescription:
-      "Structural drawings in Lahore: foundations, columns, beams, slabs and reinforcement details coordinated with your architectural plans.",
+      "Structural engineer in Lahore: structural drawings for foundations, columns, beams, slabs and reinforcement, coordinated with your architectural plans.",
     eyebrow: "Services · Engineering",
-    title: "Structural drawings in Lahore",
+    title: "Structural engineering and drawings in Lahore",
     accent: "that carry the load.",
     intro:
-      "Structural drawings show how a building carries its loads, from foundations to the roof. We prepare them in coordination with the architectural plan so the structure fits the design and the site team has clear details to follow.",
+      "Need a structural engineer in Lahore? Structural drawings show how a building carries its loads, from foundations to the roof. We prepare them in coordination with the architectural plan so the structure fits the design and the site team has clear details to follow.",
     image: structural,
     imageAlt: "Reinforced concrete structure under construction",
     includes: [
@@ -148,14 +149,15 @@ export const services: ServicePage[] = [
       "architectural-drawings-lahore",
       "building-construction-lahore",
       "construction-cost-estimation-lahore",
+      "construction-consultancy-lahore",
     ],
   },
   {
     slug: "construction-cost-estimation-lahore",
     name: "Construction Cost Estimation",
-    metaTitle: "Construction Cost Estimation in Lahore | Dawud Niaz",
+    metaTitle: "Cost Estimation in Lahore | Construction Estimates | Dawud Niaz",
     metaDescription:
-      "Construction cost estimation in Lahore: quantity take-offs and clear budgets for grey structure and complete finishing before you build.",
+      "Cost estimation in Lahore: quantity take-offs and clear budgets for grey structure and complete construction before you build.",
     eyebrow: "Services · Planning",
     title: "Construction cost estimation in Lahore",
     accent: "know the budget first.",
@@ -208,6 +210,7 @@ export const services: ServicePage[] = [
       },
     ],
     related: [
+      "boq-services-lahore",
       "house-construction-lahore",
       "architectural-drawings-lahore",
       "renovation-upgradation-lahore",
@@ -216,9 +219,9 @@ export const services: ServicePage[] = [
   {
     slug: "house-construction-lahore",
     name: "House Construction",
-    metaTitle: "House Construction in Lahore | Dawud Niaz Engineers",
+    metaTitle: "House Construction in Lahore | Civil Engineers | Dawud Niaz",
     metaDescription:
-      "House construction in Lahore from drawings to handover: structure, finishing and site supervision by a team of engineers.",
+      "House construction in Lahore from drawings to handover: structure, finishing and site supervision by civil engineers.",
     eyebrow: "Services · Residential",
     title: "House construction in Lahore",
     accent: "from plot to handover.",
@@ -281,14 +284,14 @@ export const services: ServicePage[] = [
   {
     slug: "building-construction-lahore",
     name: "Commercial & Apartment Buildings",
-    metaTitle: "Commercial Building Construction in Lahore | Dawud Niaz",
+    metaTitle: "Building Contractor in Lahore | Commercial Construction | Dawud Niaz",
     metaDescription:
-      "Commercial, apartment and industrial building construction in Lahore with planning, site supervision, quality checks and MEP coordination.",
+      "Building contractor in Lahore for commercial, apartment and industrial construction: planning, site supervision, quality checks and MEP coordination.",
     eyebrow: "Services · Commercial & Industrial",
-    title: "Commercial and apartment building construction in Lahore",
+    title: "Building contractor in Lahore for commercial and apartment buildings",
     accent: "planned and coordinated.",
     intro:
-      "Apartments, plazas, offices, bank branches and industrial buildings need careful planning, coordination between trades and clear records. We deliver them with site supervision, quality checks and practical resource planning.",
+      "As a building contractor in Lahore, we construct apartments, plazas, offices, bank branches and industrial buildings, which need careful planning, coordination between trades and clear records. We deliver them with site supervision, quality checks and practical resource planning.",
     image: building,
     imageAlt: "Engineers reviewing structural work on a building site",
     includes: [
@@ -346,7 +349,7 @@ export const services: ServicePage[] = [
   {
     slug: "renovation-upgradation-lahore",
     name: "Renovation & Upgradation",
-    metaTitle: "Renovation & Upgradation in Lahore | Dawud Niaz Engineers",
+    metaTitle: "Renovation & Upgradation in Lahore | Dawud Niaz",
     metaDescription:
       "Building renovation and upgradation in Lahore: civil modifications, flooring, ceilings and finishing for houses, offices and bank branches.",
     eyebrow: "Services · Renovation",
@@ -355,7 +358,7 @@ export const services: ServicePage[] = [
     intro:
       "Renovation is harder than new construction because every building hides surprises. We start with a survey, plan the work in phases and carry out civil modifications and finishing for houses, offices and bank branches.",
     image: renovation,
-    imageAlt: "House transformation and renovation work",
+    imageAlt: "House renovation in Lahore: before and after, from plaster removal to finished exterior",
     includes: [
       "Survey and condition assessment",
       "Removal of existing fixtures and partitions",
@@ -406,6 +409,331 @@ export const services: ServicePage[] = [
       "architectural-drawings-lahore",
       "house-construction-lahore",
       "construction-cost-estimation-lahore",
+    ],
+  },
+  {
+    slug: "house-map-design-lahore",
+    name: "House Map Design",
+    metaTitle: "House Map Design in Lahore | House Designer | Dawud Niaz",
+    metaDescription:
+      "House map design in Lahore: practical house plans, elevations and working drawings from a house designer who plans around your plot, family and budget.",
+    eyebrow: "Services · Design",
+    title: "House map design in Lahore",
+    accent: "that fits your plot and family.",
+    intro:
+      "A good house map decides how comfortable a home is for decades. We prepare house map design in Lahore for plots of different sizes, planning rooms, lounges, kitchens, parking and stairs around your family's daily routine, your plot and your budget, and then develop the approved layout into drawings the builder can use.",
+    image: architecture,
+    imageAlt: "House plan drawings, floor plan sketches and design tools on a desk",
+    includes: [
+      "Plot study and requirement checklist",
+      "Ground, first and second floor layouts",
+      "Front and side elevations",
+      "Kitchen, bathroom and staircase planning",
+      "Parking, lawn and boundary wall layout",
+      "Working drawings for construction",
+      "Coordination with structural, electrical and plumbing drawings",
+    ],
+    process: [
+      {
+        title: "Plot and requirements",
+        text: "We take your plot size, orientation, number of family members, rooms needed and budget range.",
+      },
+      {
+        title: "Layout options",
+        text: "You review layout options and comment on room sizes, circulation, light and ventilation.",
+      },
+      {
+        title: "Elevation and revisions",
+        text: "The exterior is developed and the plan is revised until you are satisfied.",
+      },
+      {
+        title: "Drawing set",
+        text: "You receive a drawing set for construction and, where required, for submission to the relevant authority.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Can you design a house map for a small plot?",
+        a: "Yes. Small plots need careful planning of stairs, light and room sizes. Share the plot dimensions and your must-have rooms and we will propose layouts.",
+      },
+      {
+        q: "Do I get the structural drawings as well?",
+        a: "Structural drawings are a separate service, but we coordinate them with the house map so columns and beams fit the plan.",
+      },
+      {
+        q: "Can I bring my own idea or a sample plan?",
+        a: "Yes. Sample plans and sketches are a helpful starting point for the house designer.",
+      },
+      {
+        q: "Will the design match my budget?",
+        a: "We discuss your budget at the start and can prepare a cost estimate once the layout is final.",
+      },
+    ],
+    related: [
+      "architectural-drawings-lahore",
+      "structural-drawings-lahore",
+      "construction-cost-estimation-lahore",
+      "house-construction-lahore",
+    ],
+  },
+  {
+    slug: "boq-services-lahore",
+    name: "BOQ Services",
+    metaTitle: "BOQ Services in Lahore | Bill of Quantities | Dawud Niaz",
+    metaDescription:
+      "BOQ services in Lahore: itemised bill of quantities prepared from your drawings for tendering, contractor comparison and cost control.",
+    eyebrow: "Services · Estimation",
+    title: "BOQ services in Lahore",
+    accent: "for clear, comparable pricing.",
+    intro:
+      "A bill of quantities (BOQ) lists every item of work with its quantity and unit, so contractors price the same scope and you can compare quotations fairly. We prepare BOQ services in Lahore for houses, apartments and commercial buildings, directly from your architectural and structural drawings.",
+    image: planning,
+    imageAlt: "Construction planning documents and quantity sheets",
+    includes: [
+      "Item-wise bill of quantities from drawings",
+      "Excavation, concrete, steel, masonry and finishing items",
+      "Units, quantities and specification notes",
+      "Rates and amounts where required",
+      "Summary sheet by trade or by floor",
+      "Revision when drawings change",
+      "Support in comparing contractor quotations",
+    ],
+    process: [
+      {
+        title: "Drawing review",
+        text: "We check the architectural and structural drawings and note anything missing.",
+      },
+      {
+        title: "Quantity take-off",
+        text: "Quantities are measured item by item for each part of the building.",
+      },
+      {
+        title: "BOQ preparation",
+        text: "Items are arranged in a clear format with units, quantities and specification notes.",
+      },
+      {
+        title: "Review and handover",
+        text: "You receive the BOQ and we explain it so it can be used for tenders and cost control.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What is the difference between a BOQ and a cost estimate?",
+        a: "A BOQ lists items and quantities so contractors can price them. A cost estimate puts expected rates against those quantities to give a budget. See our cost estimation service.",
+      },
+      {
+        q: "Do you need complete drawings?",
+        a: "Complete drawings give the most accurate BOQ. If drawings are incomplete we note the assumptions made.",
+      },
+      {
+        q: "Can the BOQ be used for tendering?",
+        a: "Yes. A BOQ allows each contractor to price the same scope, which makes quotations easier to compare.",
+      },
+      {
+        q: "Do you update the BOQ if the design changes?",
+        a: "Yes. Send the revised drawings and we update the affected items.",
+      },
+    ],
+    related: [
+      "construction-cost-estimation-lahore",
+      "grey-structure-construction-lahore",
+      "turnkey-construction-lahore",
+      "structural-drawings-lahore",
+    ],
+  },
+  {
+    slug: "grey-structure-construction-lahore",
+    name: "Grey Structure Construction",
+    metaTitle: "Grey Structure in Lahore | Grey Structure Construction | Dawud Niaz",
+    metaDescription:
+      "Grey structure in Lahore: foundations, RCC frame, slabs and brickwork built under engineering supervision, ready for finishing.",
+    eyebrow: "Services · Construction",
+    title: "Grey structure construction in Lahore",
+    accent: "built right the first time.",
+    intro:
+      "The grey structure is the foundation of everything that follows: excavation, foundations, columns, beams, slabs, brickwork and plaster. We build grey structure in Lahore under engineering supervision, checking each stage against the drawings so the finishing stage starts on a sound base.",
+    image: structural,
+    imageAlt: "Reinforced concrete grey structure under construction",
+    includes: [
+      "Site setup, excavation and foundations",
+      "Columns, beams and RCC slabs",
+      "Brickwork and plaster",
+      "Staircase and boundary wall structure",
+      "Rough electrical and plumbing conduits",
+      "Stage-wise inspection against drawings",
+      "Progress updates during construction",
+    ],
+    process: [
+      {
+        title: "Drawings and estimate",
+        text: "We confirm the drawings and agree the scope and grey structure cost.",
+      },
+      {
+        title: "Foundation and frame",
+        text: "Excavation, foundations and the RCC frame are built with checks on steel, shuttering and concrete.",
+      },
+      {
+        title: "Slabs and masonry",
+        text: "Slabs, brickwork and plaster are completed floor by floor.",
+      },
+      {
+        title: "Handover",
+        text: "Grey structure is handed over, ready for finishing by us or by your own contractor.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What is included in grey structure?",
+        a: "It generally covers the structural and masonry work up to plaster, before flooring, paint, doors, windows and fixtures. We confirm the exact scope in writing for your project.",
+      },
+      {
+        q: "Can I finish the house with another contractor?",
+        a: "Yes. You can take grey structure from us and arrange finishing separately, or ask us for complete construction.",
+      },
+      {
+        q: "How do you control quality?",
+        a: "Work is checked against the drawings at each stage, including steel placement before concrete is poured.",
+      },
+      {
+        q: "Can you give a grey structure cost estimate first?",
+        a: "Yes. See our cost estimation and BOQ services, or use the cost calculator for a quick idea.",
+      },
+    ],
+    related: [
+      "house-construction-lahore",
+      "turnkey-construction-lahore",
+      "boq-services-lahore",
+      "structural-drawings-lahore",
+    ],
+  },
+  {
+    slug: "turnkey-construction-lahore",
+    name: "Turnkey Construction",
+    metaTitle: "Turnkey Construction in Lahore | Design & Build | Dawud Niaz",
+    metaDescription:
+      "Turnkey construction in Lahore: design, drawings, estimate, construction and finishing handled by one team and handed over ready to use.",
+    eyebrow: "Services · Turnkey",
+    title: "Turnkey construction in Lahore",
+    accent: "from drawings to handover.",
+    intro:
+      "With turnkey construction in Lahore, one team looks after design, drawings, cost planning, construction and finishing, and hands over a building that is ready to use. It suits owners who want a single point of responsibility instead of coordinating several consultants and contractors.",
+    image: residential,
+    imageAlt: "Residential building constructed from design to finishing",
+    includes: [
+      "Architectural and structural drawings",
+      "Cost estimate and BOQ",
+      "Grey structure construction",
+      "Electrical, plumbing and finishing works",
+      "Site supervision and quality checks",
+      "Regular progress updates",
+      "Final inspection and handover",
+    ],
+    process: [
+      {
+        title: "Brief and design",
+        text: "We agree your requirements, budget and timeline, then prepare the drawings.",
+      },
+      {
+        title: "Estimate and agreement",
+        text: "A cost estimate and scope of work are agreed before the work begins.",
+      },
+      {
+        title: "Construction and finishing",
+        text: "Structure, services and finishing are carried out and coordinated by one team.",
+      },
+      {
+        title: "Handover",
+        text: "After final inspection the building is handed over with the remaining items completed.",
+      },
+    ],
+    faqs: [
+      {
+        q: "What does turnkey mean?",
+        a: "It means one contractor takes responsibility for the project from design through construction and finishing, then hands over the completed building.",
+      },
+      {
+        q: "Can I make changes during construction?",
+        a: "Small changes are usually possible. We explain the effect of a change on cost and time before it is made.",
+      },
+      {
+        q: "Is turnkey suitable for commercial buildings?",
+        a: "Yes, depending on scope. Share your drawings or requirements and we will advise.",
+      },
+      {
+        q: "How is the price decided?",
+        a: "The price is based on the agreed drawings, specification and BOQ, which we put in writing.",
+      },
+    ],
+    related: [
+      "house-construction-lahore",
+      "grey-structure-construction-lahore",
+      "boq-services-lahore",
+      "architectural-drawings-lahore",
+    ],
+  },
+  {
+    slug: "construction-consultancy-lahore",
+    name: "Construction Consultancy",
+    metaTitle: "Construction Consultant in Lahore | Civil Engineer | Dawud Niaz",
+    metaDescription:
+      "Construction consultant in Lahore: civil engineer advice on drawings, cost, contractors and site quality before and during your project.",
+    eyebrow: "Services · Consultancy",
+    title: "Construction consultant in Lahore",
+    accent: "for confident decisions.",
+    intro:
+      "Before you commit to a design or a contractor, an independent opinion from a civil engineer can prevent costly mistakes. We act as a construction consultant in Lahore, reviewing drawings and quotations, advising on materials and methods, and checking progress on site.",
+    image: building,
+    imageAlt: "Engineers reviewing structural work on a building site",
+    includes: [
+      "Review of architectural and structural drawings",
+      "Review of contractor quotations and BOQs",
+      "Advice on materials, methods and sequencing",
+      "Site visits and progress checks",
+      "Quality and safety observations",
+      "Support with planning a phased budget",
+      "Guidance for plot purchase and building decisions",
+    ],
+    process: [
+      {
+        title: "Understand the project",
+        text: "We review your plot, drawings, budget and what you want to decide.",
+      },
+      {
+        title: "Review",
+        text: "Drawings, quotations and scope are reviewed for gaps, risks and savings.",
+      },
+      {
+        title: "Advice",
+        text: "You receive clear recommendations in plain language.",
+      },
+      {
+        title: "Site support",
+        text: "Where needed, we visit the site and check work against the drawings.",
+      },
+    ],
+    faqs: [
+      {
+        q: "When should I hire a construction consultant?",
+        a: "Ideally before construction starts, so the design, estimate and contractor are checked first. It also helps mid-project if you are unsure about quality or cost.",
+      },
+      {
+        q: "Can you review another contractor's quotation?",
+        a: "Yes. Share the quotation and drawings and we will point out missing items and unclear scope.",
+      },
+      {
+        q: "Do you visit the site?",
+        a: "Yes, site visits can be arranged to check progress against drawings and specification.",
+      },
+      {
+        q: "Is consultancy available if you are not building for me?",
+        a: "Yes, consultancy can be taken as a standalone service.",
+      },
+    ],
+    related: [
+      "building-construction-lahore",
+      "construction-cost-estimation-lahore",
+      "structural-drawings-lahore",
+      "house-construction-lahore",
     ],
   },
 ];

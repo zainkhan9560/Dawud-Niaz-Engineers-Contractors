@@ -3,7 +3,7 @@ import { ArrowUp } from "lucide-react";
 
 const WHATSAPP_NUMBER = "923338581087";
 const WHATSAPP_TEXT =
-  "Hello Dawud Niaz Engineers & Contractors, I would like to discuss a project.";
+  "Hello Dawud Niaz Associates Engineers and Contractors, I would like to discuss a project.";
 
 /** WhatsApp chat button (all pages) plus a back-to-top button that appears after scrolling. */
 export default function FloatingActions() {
