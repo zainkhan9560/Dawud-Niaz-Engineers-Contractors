@@ -14,6 +14,7 @@ Responsive company website built with React, TypeScript, TanStack Router, Vite a
 .
 ├── public/             Favicons, web manifest, robots.txt (served as-is)
 <<<<<<< HEAD
+<<<<<<< HEAD
 └── src/
     ├── assets/         Optimised WebP images (one file per picture)
     ├── components/     Shared UI: CompanyPageShell, ThemeToggle, FloatingActions, ScrollReveal
@@ -24,6 +25,8 @@ Responsive company website built with React, TypeScript, TanStack Router, Vite a
 ```
 To add a photo: save it as an optimised `.webp` (about 1100-1300px wide) in `src/assets/` and import it from the page.
 =======
+=======
+>>>>>>> ae5426a (Upload website files)
 ├── src/
 │   ├── assets/         Optimised WebP images used by the pages (only what the code imports)
 │   ├── components/     Shared UI: CompanyPageShell, ThemeToggle, FloatingActions, ScrollReveal
@@ -35,7 +38,21 @@ To add a photo: save it as an optimised `.webp` (about 1100-1300px wide) in `src
 └── .lovable/           Project metadata
 ```
 To add a photo: put the original in `original-images/`, save an optimised `.webp` (about 1100px wide) in `src/assets/`, then import it from the page.
+<<<<<<< HEAD
 >>>>>>> e99da09 (updated pictures or files)
+=======
+=======
+└── src/
+    ├── assets/         Optimised WebP images (one file per picture)
+    ├── components/     Shared UI: CompanyPageShell, ThemeToggle, FloatingActions, ScrollReveal
+    ├── routes/         One file per page (index, about, services, leadership, selected-projects, ...)
+    ├── hooks/ lib/     Small helpers
+    ├── test/           Routing tests
+    └── styles.css      Theme, animations and global styles
+```
+To add a photo: save it as an optimised `.webp` (about 1100-1300px wide) in `src/assets/` and import it from the page.
+>>>>>>> adac534 (Deleted All the Duplicated files, now the folder structure is Good and everything is working according to the plan)
+>>>>>>> ae5426a (Upload website files)
 
 ## Main pages
 - `/` Home
