@@ -3,11 +3,13 @@ title: How Construction Cost Estimates Work for Your Building
 description: What goes into a construction cost estimate, what affects the final figure and how to use an estimate to plan your budget with confidence.
 date: 2026-10-25
 category: Cost Planning
-image: /blog/site-foundation-brickwork.webp
-imageAlt: Brickwork and building materials at an active construction site
+image: /blog/brick-stack-on-site.webp
+imageAlt: Large stack of fired clay bricks stamped with a maker mark, piled on bare ground at a building site
 ---
 
 A budget is one of the first things every owner wants to know, and one of the hardest to pin down. A good construction cost estimate does not remove all uncertainty, but it helps you plan, compare options and avoid unpleasant surprises.
+
+The picture at the top is a stack of fired clay bricks delivered to a site. Bricks are one of the most visible materials in a building and one of the easiest to underestimate: the quantity depends on the wall area and thickness taken from your drawings, the price depends on the quality you choose and the market on the day, and a share of every delivery is lost to breakage and wastage. A good estimate accounts for all three.
 
 ## What an estimate is made of
 
@@ -18,6 +20,18 @@ Most building estimates combine several elements:
 - **Finishing level:** basic, standard or high-end finishes can change the total a great deal.
 - **Services:** electrical, plumbing, and any other systems included in the scope.
 - **Allowances:** extra provision for items not yet decided and for normal variation.
+
+## Example: how bricks appear in an estimate
+
+Brickwork is a good example of how an estimate is built up from quantities and rates:
+
+1. **Measure the walls.** The length, height and thickness of each wall, minus openings for doors and windows, gives the volume of masonry.
+2. **Convert to bricks.** The volume is converted into a number of bricks, and then an allowance is added for breakage and cutting.
+3. **Apply the rate.** The quantity is multiplied by the price of bricks, plus mortar, labour and delivery to site.
+4. **Check the quality.** Bricks vary in strength and consistency between kilns and between batches. Ask what grade is assumed, and inspect deliveries on site instead of relying on the quotation alone.
+5. **Plan storage.** Bricks should be stacked on firm, dry ground so they are not damaged or mixed with soil before use.
+
+The same quantities-times-rates logic applies to concrete, steel, plaster and flooring. If you want the quantities listed item by item, read our guide to [what a BOQ is](/blog/what-is-a-boq-and-why-it-matters).
 
 ## What changes the final cost
 

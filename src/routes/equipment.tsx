@@ -27,7 +27,7 @@ const rows = [
   {
     name: "Building Construction Equipment",
     detail:
-      "On-site construction activity for residential and commercial building projects, with teams coordinating finishing work and site operations.",
+      "On-site construction activity for residential building projects, with teams coordinating finishing work and site operations.",
     img: buildingSite,
     position: "object-center",
   },
@@ -48,7 +48,7 @@ const rows = [
   {
     name: "Building Execution",
     detail:
-      "Resources and construction activities coordinated for residential, commercial and industrial building work.",
+      "Resources and construction activities coordinated for residential and industrial building work.",
     img: residential,
     position: "object-center",
   },
@@ -72,7 +72,7 @@ function EquipmentPage() {
             className="equipment-card group overflow-hidden rounded-sm border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-gold animate-fade-up"
             style={{ animationDelay: `${i * 100}ms` }}
           >
-            <div className="relative aspect-[16/9] overflow-hidden bg-surface">
+            <div className="relative aspect-[2/1] overflow-hidden bg-surface">
               <img
                 decoding="async"
                 src={r.img}

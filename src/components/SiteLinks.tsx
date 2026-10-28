@@ -33,6 +33,9 @@ export default function SiteLinks() {
               ["Leadership", "/leadership"],
               ["Our Team", "/our-team"],
               ["Equipment", "/equipment"],
+              ["Contact", "/contact"],
+              ["Privacy Policy", "/privacy"],
+              ["Terms of Use", "/terms"],
             ] as const
           ).map(([l, to]) => (
             <li key={to}>

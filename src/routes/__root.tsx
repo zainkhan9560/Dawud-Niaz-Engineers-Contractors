@@ -76,11 +76,13 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+import { GA4_MEASUREMENT_ID, GOOGLE_SITE_VERIFICATION, SITE_NAME } from "@/lib/seo";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#18140f" },
       { title: "Dawud Niaz Associates Engineers and Contractors | Lahore, Pakistan" },
       {
@@ -88,6 +90,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Architectural drawings, structural drawings, construction cost estimation and building construction in Lahore, Pakistan.",
       },
+      ...(GOOGLE_SITE_VERIFICATION
+        ? [{ name: "google-site-verification", content: GOOGLE_SITE_VERIFICATION }]
+        : []),
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Dawud Niaz Associates Engineers and Contractors" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -108,9 +113,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon-16.png", type: "image/png", sizes: "16x16" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: `${SITE_NAME} blog`,
+        href: "/rss.xml",
+      },
     ],
     // Apply the saved theme before first paint. Dark is the default for new visitors.
     scripts: [
+      ...(GA4_MEASUREMENT_ID
+        ? [
+            {
+              src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
+              async: true,
+            },
+            {
+              children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}');`,
+            },
+          ]
+        : []),
       {
         children:
           'try{var t=localStorage.getItem("dn-theme");if(t==="light"){document.documentElement.classList.remove("dark")}else{document.documentElement.classList.add("dark")}}catch(e){document.documentElement.classList.add("dark")}',
@@ -130,6 +152,12 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-gold-gradient focus:px-4 focus:py-2 focus:font-semibold focus:text-primary-foreground"
+        >
+          Skip to main content
+        </a>
         {children}
         <FloatingActions />
         <Scripts />

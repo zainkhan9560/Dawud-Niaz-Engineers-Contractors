@@ -3,11 +3,13 @@ title: The Main Stages of Building a House, From Plot to Handover
 description: A simple walkthrough of the typical stages of house construction, from drawings and foundations to finishing, with tips for each stage.
 date: 2026-10-25
 category: Construction Guide
-image: /blog/building-structure-under-construction.webp
-imageAlt: Brick and concrete house structure during the construction stage
+image: /blog/house-foundation-plinth-brick-panels.webp
+imageAlt: Freshly poured concrete grid around brick-lined panels on a house plot, with a pump pipe in the foreground and a brick boundary wall alongside
 ---
 
 Building a house is easier to manage when you understand the order of work. Every project is different, but most follow the same broad stages. Knowing them helps you ask the right questions and spot problems early.
+
+The picture at the top was taken on a house plot at the foundation stage. Concrete has been placed in a grid pattern around brick-lined panels of compacted fill, a pump stands in the foreground to keep the excavation free of water, and a brick wall runs along the boundary. Everything built later, from columns to roof, depends on this work being level, correctly sized and properly cured, which is why the foundation stage deserves close attention.
 
 ## 1. Planning and drawings
 
@@ -20,6 +22,14 @@ The site is cleared and marked out according to the drawings. Access for materia
 ## 3. Excavation and foundations
 
 Trenches are dug, reinforcement is placed and concrete is poured for the foundations. This stage is hidden once it is covered, so it is the time to check carefully that the work matches the structural drawings.
+
+Things worth checking on site, using the photo at the top as a guide:
+
+- **Levels and dimensions.** The concrete grid should follow the layout on the structural drawings, with consistent widths and levels all round.
+- **Edges and shuttering.** Here the edges of the panels are lined with brick, which holds the shape of the concrete. Whatever is used, it should be firm, so the concrete is not spoiled or lost.
+- **Water on site.** A pump is a common sight on plots with a high water table or after rain. Standing water in trenches weakens the ground and spoils concrete, so remove it before concreting.
+- **Neighbouring walls.** When you excavate beside an existing boundary wall, ask your engineer how to protect it and keep loose soil heaps back from the edge.
+- **Curing.** Freshly placed concrete should be kept damp for the period your engineer specifies. Concrete left to dry out quickly in Lahore's summer sun can lose strength and crack.
 
 ## 4. Structure
 

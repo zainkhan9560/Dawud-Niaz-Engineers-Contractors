@@ -9,10 +9,8 @@ import CompanyPageShell from "@/components/CompanyPageShell";
 import bank from "@/assets/project-meezan-bank-branch.webp";
 import hbl from "@/assets/project-hbl-branch-upgradation.webp";
 import warehouse from "@/assets/project-industrial-warehouse.webp";
-import plazaPhoto from "@/assets/project-commercial-plaza.webp";
+import plazaPhoto from "@/assets/project-plaza.webp";
 import alfalah from "@/assets/project-alfalah-bank-branch.webp";
-import villa from "@/assets/residential-house-transformation.webp";
-import site from "@/assets/construction-site-review-team.webp";
 import mcb from "@/assets/project-mcb-bank-branch.webp";
 
 export const Route = createFileRoute("/selected-projects")({
@@ -20,7 +18,7 @@ export const Route = createFileRoute("/selected-projects")({
     pageHead({
       title: "Selected Construction Projects | Dawud Niaz Engineers",
       description:
-        "Selected banking, commercial, industrial and residential construction and renovation projects by Dawud Niaz Associates Engineers and Contractors.",
+        "Selected banking, industrial and residential construction and renovation projects by Dawud Niaz Associates Engineers and Contractors.",
       path: "/selected-projects",
       jsonLd: [
         breadcrumbLd([
@@ -35,8 +33,6 @@ export const Route = createFileRoute("/selected-projects")({
 type Project = {
   name: string;
   scope: string;
-  duration: string;
-  value: string;
   img: string;
   pos?: string;
 };
@@ -50,59 +46,33 @@ const projects: Project[] = [
   {
     name: "Meezan Bank — Branch Development",
     scope: "Civil works, interior finishing and MEP coordination",
-    duration: "3 months",
-    value: "PKR 32 million",
     img: bank,
     pos: "50% 0%",
   },
   {
     name: "Bank Alfalah — Branch Renovation",
     scope: "Renovation, flooring, ceiling and finishing works",
-    duration: "2.5 months",
-    value: "PKR 24 million",
     img: alfalah,
   },
   {
-    name: "MCB Bank — Commercial Branch Works",
+    name: "MCB Bank — Branch Works",
     scope: "Civil modification, interior and external works",
-    duration: "3 months",
-    value: "PKR 28 million",
     img: mcb,
   },
   {
     name: "HBL Office & Branch Upgradation",
     scope: "Renovation, civil works and finishing",
-    duration: "3 months",
-    value: "PKR 35 million",
     img: hbl,
   },
   {
     name: "Industrial Warehouse Development",
     scope: "Earthworks, RCC structure and flooring",
-    duration: "7 months",
-    value: "PKR 145 million",
     img: warehouse,
   },
   {
-    name: "Commercial Plaza Development",
+    name: "Plaza Development",
     scope: "Structure, masonry, finishing and external works",
-    duration: "10 months",
-    value: "PKR 190 million",
     img: plazaPhoto,
-  },
-  {
-    name: "Corporate Office Development",
-    scope: "Civil, interior and architectural execution",
-    duration: "5 months",
-    value: "PKR 68 million",
-    img: site,
-  },
-  {
-    name: "Residential Villa Project",
-    scope: "Complete turnkey construction",
-    duration: "9 months",
-    value: "PKR 85 million",
-    img: villa,
   },
 ];
 
@@ -175,7 +145,7 @@ function ProjectsPage() {
           Selected projects. <span className="text-gold-gradient">Practical delivery.</span>
         </>
       }
-      intro="Explore selected project examples from the company profile, covering banking, commercial, industrial and residential work. Images are illustrative visuals rather than verified photographs of the named project sites."
+      intro="Explore selected project examples from the company profile, covering banking, industrial and residential work. Images are illustrative visuals rather than verified photographs of the named project sites."
     >
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((project, index) => (
@@ -189,7 +159,7 @@ function ProjectsPage() {
                 })
               }
               aria-label={`View ${project.name} image full size`}
-              className="group relative block aspect-[3/2] w-full cursor-zoom-in overflow-hidden"
+              className="group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden"
             >
               <img
                 src={project.img}
@@ -214,31 +184,14 @@ function ProjectsPage() {
               <h2 className="text-2xl">{project.name}</h2>
 
               <p className="mt-3 leading-6 text-muted-foreground">{project.scope}</p>
-
-              <div className="mt-5 grid grid-cols-2 gap-4 border-t border-border pt-4">
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                    Duration
-                  </p>
-                  <p className="mt-1 font-semibold">{project.duration}</p>
-                </div>
-
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                    Profile-listed value
-                  </p>
-                  <p className="mt-1 font-semibold text-gold">{project.value}</p>
-                </div>
-              </div>
             </div>
           </article>
         ))}
       </div>
 
       <p className="mt-8 text-xs leading-5 text-muted-foreground">
-        Before publication, verify project details, durations and values against the company profile
-        and obtain permission to publish client names and project photographs. Replace illustrative
-        images with approved, project-specific photographs where available.
+        Project names and photographs are shown from our company profile. Project images may be
+        illustrative; ask us for project-specific details.
       </p>
 
       {activeImage && (

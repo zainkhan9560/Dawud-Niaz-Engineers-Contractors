@@ -30,12 +30,13 @@ export const GOOGLE_BUSINESS_PROFILE_URL =
   "https://www.google.com/search?sca_esv=a3f5dec736f5e351&sxsrf=APpeQnukmIZ8eePlWbEQak8PdUU7FJB1bw%3A1792593835918&q=Dawud%20Niaz%20Engineers%20%26%20Contractors&stick=H4sIAAAAAAAAAONgU1I1qEi0MDVKTjZMMbY0MkoySkuyMqgwTE1KM7I0SjRLSjM1NUy2XMSq5JJYXpqi4JeZWKXgmpeemZeaWlSsoKbgnJ9XUpSYXJJfVAwAEI9eH04AAAA&mat=Cf8FqEKAVwzt&ved=2ahUKEwjqycO2rMuXAxUtUaQEHb50K8QQrMcEegQIPxAC";
 export const GOOGLE_REVIEW_URL = "https://g.page/r/CclR9WsqKb8eEBM/review";
 
+/** Only real profile links belong here (they are published in the structured data). Add Instagram, LinkedIn or YouTube links once those accounts exist. */
 export const SOCIAL_PROFILES: string[] = [
   "https://www.facebook.com/share/1F7zkSqqss/?mibextid=wwXIfr",
-  "https://www.instagram.com/your-company/",
-  "https://www.linkedin.com/company/your-company/",
-  "https://www.youtube.com/@your-company",
 ];
+
+/** Paste your Google Analytics 4 measurement ID (looks like G-XXXXXXXXXX). Leave "" to keep analytics off. */
+export const GA4_MEASUREMENT_ID = "";
 
 export const MAPS_QUERY = `${BUSINESS.street}, ${BUSINESS.city}, Pakistan`;
 export const MAPS_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&output=embed`;
@@ -161,5 +162,18 @@ export function websiteLd() {
     name: SITE_NAME,
     url: absoluteUrl("/"),
     publisher: { "@id": BUSINESS_ID },
+  };
+}
+
+/** FAQPage structured data. Only pass questions that are visible on the page. */
+export function faqLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((i) => ({
+      "@type": "Question",
+      name: i.q,
+      acceptedAnswer: { "@type": "Answer", text: i.a },
+    })),
   };
 }

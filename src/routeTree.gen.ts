@@ -11,13 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CostCalculatorRouteImport } from './routes/cost-calculator'
 import { Route as EquipmentRouteImport } from './routes/equipment'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as OurTeamRouteImport } from './routes/our-team'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SelectedProjectsRouteImport } from './routes/selected-projects'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ServicesSlugRouteImport } from './routes/services_.$slug'
@@ -30,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CostCalculatorRoute = CostCalculatorRouteImport.update({
@@ -57,6 +65,11 @@ const OurTeamRoute = OurTeamRouteImport.update({
   path: '/our-team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SelectedProjectsRoute = SelectedProjectsRouteImport.update({
   id: '/selected-projects',
   path: '/selected-projects',
@@ -65,6 +78,11 @@ const SelectedProjectsRoute = SelectedProjectsRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -86,13 +104,16 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/cost-calculator': typeof CostCalculatorRoute
   '/equipment': typeof EquipmentRoute
   '/gallery': typeof GalleryRoute
   '/leadership': typeof LeadershipRoute
   '/our-team': typeof OurTeamRoute
+  '/privacy': typeof PrivacyRoute
   '/selected-projects': typeof SelectedProjectsRoute
   '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -100,13 +121,16 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/cost-calculator': typeof CostCalculatorRoute
   '/equipment': typeof EquipmentRoute
   '/gallery': typeof GalleryRoute
   '/leadership': typeof LeadershipRoute
   '/our-team': typeof OurTeamRoute
+  '/privacy': typeof PrivacyRoute
   '/selected-projects': typeof SelectedProjectsRoute
   '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -115,13 +139,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/cost-calculator': typeof CostCalculatorRoute
   '/equipment': typeof EquipmentRoute
   '/gallery': typeof GalleryRoute
   '/leadership': typeof LeadershipRoute
   '/our-team': typeof OurTeamRoute
+  '/privacy': typeof PrivacyRoute
   '/selected-projects': typeof SelectedProjectsRoute
   '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/services_/$slug': typeof ServicesSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -131,13 +158,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/contact'
     | '/cost-calculator'
     | '/equipment'
     | '/gallery'
     | '/leadership'
     | '/our-team'
+    | '/privacy'
     | '/selected-projects'
     | '/services'
+    | '/terms'
     | '/blog/$slug'
     | '/services/$slug'
     | '/blog/'
@@ -145,13 +175,16 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/contact'
     | '/cost-calculator'
     | '/equipment'
     | '/gallery'
     | '/leadership'
     | '/our-team'
+    | '/privacy'
     | '/selected-projects'
     | '/services'
+    | '/terms'
     | '/blog/$slug'
     | '/services/$slug'
     | '/blog'
@@ -159,13 +192,16 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/contact'
     | '/cost-calculator'
     | '/equipment'
     | '/gallery'
     | '/leadership'
     | '/our-team'
+    | '/privacy'
     | '/selected-projects'
     | '/services'
+    | '/terms'
     | '/blog/$slug'
     | '/services_/$slug'
     | '/blog/'
@@ -174,13 +210,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   CostCalculatorRoute: typeof CostCalculatorRoute
   EquipmentRoute: typeof EquipmentRoute
   GalleryRoute: typeof GalleryRoute
   LeadershipRoute: typeof LeadershipRoute
   OurTeamRoute: typeof OurTeamRoute
+  PrivacyRoute: typeof PrivacyRoute
   SelectedProjectsRoute: typeof SelectedProjectsRoute
   ServicesRoute: typeof ServicesRoute
+  TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -200,6 +239,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cost-calculator': {
@@ -237,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OurTeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/selected-projects': {
       id: '/selected-projects'
       path: '/selected-projects'
@@ -249,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -278,13 +338,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   CostCalculatorRoute: CostCalculatorRoute,
   EquipmentRoute: EquipmentRoute,
   GalleryRoute: GalleryRoute,
   LeadershipRoute: LeadershipRoute,
   OurTeamRoute: OurTeamRoute,
+  PrivacyRoute: PrivacyRoute,
   SelectedProjectsRoute: SelectedProjectsRoute,
   ServicesRoute: ServicesRoute,
+  TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   BlogIndexRoute: BlogIndexRoute,

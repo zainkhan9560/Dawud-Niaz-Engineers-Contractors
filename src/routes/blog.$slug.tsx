@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import CompanyPageShell from "@/components/CompanyPageShell";
 import Markdown from "@/components/Markdown";
-import { getPost, relatedPosts } from "@/lib/blog";
+import { formatDate, getPost, relatedPosts } from "@/lib/blog";
+import { slugify } from "@/lib/markdown";
 import { BUSINESS_ID, SITE_NAME, absoluteUrl, breadcrumbLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -54,6 +55,7 @@ function BlogPostPage() {
   const post = getPost(slug);
   if (!post) throw notFound();
   const related = relatedPosts(post.slug, post.category);
+  const headings = [...post.body.matchAll(/^## (.+)$/gm)].map((m) => (m[1] ?? "").trim());
   return (
     <CompanyPageShell
       eyebrow={`${post.category} · ${post.readingMinutes} min read`}
@@ -66,11 +68,31 @@ function BlogPostPage() {
             src={post.image}
             alt={post.imageAlt ?? post.title}
             decoding="async"
-            className="mb-10 w-full border border-border"
+            fetchPriority="high"
+            width={1280}
+            height={720}
+            className="mb-10 aspect-video w-full border border-border bg-black object-contain"
           />
         )}
+        <p className="mb-8 text-sm text-muted-foreground">
+          By {post.author} · Published {formatDate(post.date)}
+          {post.updated ? ` · Updated ${formatDate(post.updated)}` : ""}
+        </p>
+        {headings.length >= 4 && (
+          <nav aria-label="Table of contents" className="mb-10 border border-border bg-surface p-6">
+            <p className="eyebrow mb-3">In this article</p>
+            <ol className="list-decimal space-y-1.5 pl-5 text-sm">
+              {headings.map((h) => (
+                <li key={h}>
+                  <a href={`#${slugify(h)}`} className="text-gold hover:underline">
+                    {h}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
         <Markdown source={post.body} />
-        <p className="mt-10 text-sm text-muted-foreground">Published by {post.author}</p>
         <div className="mt-10 flex flex-col gap-4 bg-surface p-7 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-2xl">Planning a project in Lahore?</h2>
@@ -89,7 +111,7 @@ function BlogPostPage() {
 
       {related.length > 0 && (
         <section className="mx-auto mt-16 max-w-3xl">
-          <h2 className="text-2xl">More guides</h2>
+          <h2 className="text-2xl">Related articles</h2>
           <ul className="mt-4 space-y-3">
             {related.map((r) => (
               <li key={r.slug}>

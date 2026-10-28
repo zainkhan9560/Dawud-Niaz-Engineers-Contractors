@@ -23,7 +23,7 @@ export const Route = createFileRoute("/our-team")({
 const groups = [
   {
     title: "Management",
-    desc: "CEO / Director Technical, Managing Director, commercial management and administration support.",
+    desc: "CEO / Director Technical, Managing Director, business management and administration support.",
   },
   {
     title: "Engineering & Technical Team",
@@ -58,7 +58,7 @@ function TeamPage() {
                     ? "Engineering and technical team: civil engineers, site engineers, architects, quantity surveyors and QA/QC support"
                     : "Construction site team, illustrative image"
               }
-              className="aspect-[3/2] w-full object-cover object-top"
+              className="aspect-[16/10] w-full object-cover object-top"
               loading="lazy"
             />
             <div className="p-6">

@@ -20,6 +20,9 @@ const staticPages = [
   ["/gallery", "0.6", "monthly"],
   ["/equipment", "0.5", "yearly"],
   ["/blog", "0.8", "daily"],
+  ["/contact", "0.8", "yearly"],
+  ["/privacy", "0.2", "yearly"],
+  ["/terms", "0.2", "yearly"],
 ];
 
 const servicesSrc = readFileSync(join(root, "src/content/services.ts"), "utf8");
@@ -46,7 +49,13 @@ const posts = readdirSync(blogDir)
       return null;
     const slug = get("slug") || file.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "");
     const updated = get("updated");
-    return { slug, lastmod: /^\d{4}-\d{2}-\d{2}$/.test(updated) ? updated : get("date") };
+    return {
+      slug,
+      title: get("title"),
+      description: get("description"),
+      date: get("date"),
+      lastmod: /^\d{4}-\d{2}-\d{2}$/.test(updated) ? updated : get("date"),
+    };
   })
   .filter(Boolean);
 
@@ -89,3 +98,36 @@ writeFileSync(join(root, "public/sitemap.xml"), xml);
 console.log(
   `sitemap.xml written: ${urls.length} URLs (${serviceSlugs.length} services, ${posts.length} blog posts) for ${SITE_URL}`,
 );
+
+// RSS feed for the blog (newest first). Written to public/rss.xml.
+const esc = (t) =>
+  String(t)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+const items = [...posts]
+  .sort((a, b) => (a.date < b.date ? 1 : -1))
+  .map(
+    (p) => `    <item>
+      <title>${esc(p.title)}</title>
+      <link>${SITE_URL}/blog/${p.slug}</link>
+      <guid isPermaLink="true">${SITE_URL}/blog/${p.slug}</guid>
+      <pubDate>${new Date(`${p.date}T00:00:00Z`).toUTCString()}</pubDate>
+      <description>${esc(p.description)}</description>
+    </item>`,
+  )
+  .join("\n");
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Dawud Niaz Associates Engineers and Contractors - Blog</title>
+    <link>${SITE_URL}/blog</link>
+    <description>Construction and engineering guides from Lahore.</description>
+    <language>en-pk</language>
+${items}
+  </channel>
+</rss>
+`;
+writeFileSync(join(root, "public/rss.xml"), rss);
+console.log(`rss.xml written: ${posts.length} posts`);

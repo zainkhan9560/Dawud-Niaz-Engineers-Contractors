@@ -11,7 +11,6 @@ const companyMenu = [
   { label: "Leadership", to: "/leadership" },
   { label: "Our Team", to: "/our-team" },
   { label: "Equipment", to: "/equipment" },
-  { label: "Gallery", to: "/gallery" },
 ] as const;
 
 const resourcesMenu = [
@@ -153,6 +152,10 @@ export default function SiteHeader() {
               Projects
             </Link>
 
+            <Link to="/gallery" className={desktopLink}>
+              Gallery
+            </Link>
+
             <div className="group relative">
               <button type="button" className={`${desktopLink} gap-1`} aria-haspopup="true">
                 Company
@@ -283,6 +286,10 @@ export default function SiteHeader() {
 
           <Link to="/selected-projects" onClick={close} className={mobileLink}>
             Projects
+          </Link>
+
+          <Link to="/gallery" onClick={close} className={mobileLink}>
+            Gallery
           </Link>
 
           <div>

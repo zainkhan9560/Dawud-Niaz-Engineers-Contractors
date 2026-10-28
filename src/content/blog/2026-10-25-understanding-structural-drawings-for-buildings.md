@@ -3,11 +3,13 @@ title: Understanding Structural Drawings for Houses and Buildings
 description: A plain-language guide to structural drawings: foundations, columns, beams and slabs, and why they must match your architectural plan.
 date: 2026-10-25
 category: Drawings
-image: /blog/scaffolding-multi-storey-building.webp
-imageAlt: Scaffolding set up on a multi-storey building under construction
+image: /blog/structural-drawing-layout-plan.webp
+imageAlt: Illustrated structural layout plan showing a grid of footings, columns and beams with grid lines labelled A to D and 1 to 4
 ---
 
 Structural drawings describe the skeleton of a building: the parts that carry its weight and keep it standing. They are different from architectural drawings, which focus on layout and appearance. A safe, well-built building needs both, and they must agree with each other.
+
+The picture at the top of this article is a simplified structural layout plan. Grid lines labelled A to D and 1 to 4 locate the building, a footing sits under every column, and beams join the columns in both directions. Real drawings add sizes, levels and steel details to this layout, but the basic idea is the same: every column must stand on a footing, and every floor must be tied to the foundation through a continuous path for loads.
 
 ## What structural drawings usually show
 

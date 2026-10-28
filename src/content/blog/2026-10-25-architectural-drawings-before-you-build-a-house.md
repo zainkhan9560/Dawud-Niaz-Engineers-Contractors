@@ -3,15 +3,15 @@ title: Why Architectural Drawings Come Before Construction
 description: What a complete architectural drawing set includes and why finishing your drawings first saves time and money on a house or building project.
 date: 2026-10-25
 category: Drawings
-image: /blog/building-structure-under-construction.webp
-imageAlt: Multi-storey brick and concrete building structure under construction
+image: /blog/architectural-floor-plan-drawing.webp
+imageAlt: Illustrated architectural floor plan drawing with walls, doors and dimension lines
 ---
 
 Many building problems start long before the first brick is laid. They start when construction begins without clear drawings. Architectural drawings turn your ideas into a plan that the owner, the designer and the builder can all follow.
 
 ## What architectural drawings actually are
 
-Architectural drawings show how a building will look and how its spaces will work. A typical set for a house or small commercial building includes:
+Architectural drawings show how a building will look and how its spaces will work. A typical set for a house or apartment building includes:
 
 - **Site plan:** where the building sits on the plot, with setbacks and access.
 - **Floor plans:** the layout of every floor, with rooms, doors, windows and stairs.

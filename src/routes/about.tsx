@@ -35,7 +35,7 @@ function AboutPage() {
           Engineering ideas. <span className="text-gold-gradient">Building with purpose.</span>
         </>
       }
-      intro="Dawud Niaz Associates Engineers and Contractors provides building-focused design, cost planning and construction services for residential, commercial and industrial projects."
+      intro="Dawud Niaz Associates Engineers and Contractors provides building-focused design, cost planning and construction services for residential and industrial projects."
     >
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <img
@@ -43,7 +43,7 @@ function AboutPage() {
           loading="lazy"
           src={hero}
           alt="Illustrative building construction site"
-          className="h-full max-h-[520px] w-full object-cover"
+          className="h-full max-h-[360px] w-full object-cover"
         />
         <div>
           <p className="eyebrow">Our approach</p>

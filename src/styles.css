@@ -856,3 +856,42 @@ article:hover img {
   color: var(--gold);
   font-weight: 600;
 }
+
+
+/* Responsive safeguards for every screen size and device */
+img,
+video,
+svg,
+iframe {
+  max-width: 100%;
+}
+iframe {
+  border: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  min-width: 320px;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+h1,
+h2,
+h3,
+p,
+a,
+li {
+  overflow-wrap: break-word;
+}
+@media (max-width: 380px) {
+  h1 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+}
+button,
+a,
+summary {
+  touch-action: manipulation;
+}

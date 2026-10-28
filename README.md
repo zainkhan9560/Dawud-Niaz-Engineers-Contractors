@@ -60,3 +60,10 @@ Images labelled illustrative are examples, not a claim that the exact pictured s
 
 
 Recent update: the Equipment page now uses the three supplied construction/equipment photographs, with responsive image crops and animated cards. Navigation headers include an animated gold accent bar and hover underline; reduced-motion preferences are respected.
+
+
+## More documentation
+
+- `docs/OWNER-GUIDE.md`: run, add posts and projects, settings, deploy
+- `docs/OFFSITE-SEO-CHECKLIST.md`: Search Console, Google Business Profile, reviews and links
+- `docs/MISSING-INFORMATION.md`: facts and decisions still needed from the owner

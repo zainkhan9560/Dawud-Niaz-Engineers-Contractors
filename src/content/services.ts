@@ -29,12 +29,12 @@ export const services: ServicePage[] = [
     name: "Architectural Drawings",
     metaTitle: "Architect in Lahore | Architectural Design | Dawud Niaz",
     metaDescription:
-      "Architect in Lahore for architectural design: floor plans, elevations, sections and working drawings for houses, apartments and commercial buildings.",
+      "Architect in Lahore for architectural design: floor plans, elevations, sections and working drawings for houses and apartment buildings.",
     eyebrow: "Services · Design",
     title: "Architectural design and drawings in Lahore",
     accent: "planned to be built.",
     intro:
-      "Looking for an architect in Lahore? Good drawings save time and money on site. We prepare architectural design and drawings for houses, apartments and commercial buildings in Lahore, from the first concept layout to working drawings that the construction team can build from.",
+      "Looking for an architect in Lahore? Good drawings save time and money on site. We prepare architectural design and drawings for houses and apartment buildings in Lahore, from the first concept layout to working drawings that the construction team can build from.",
     image: architecture,
     imageAlt: "Architectural floor plans, model and drawing tools on a design desk",
     includes: [
@@ -283,15 +283,15 @@ export const services: ServicePage[] = [
   },
   {
     slug: "building-construction-lahore",
-    name: "Commercial & Apartment Buildings",
-    metaTitle: "Building Contractor in Lahore | Commercial Construction | Dawud Niaz",
+    name: "Apartment & Building Construction",
+    metaTitle: "Building Contractor in Lahore | Building Construction | Dawud Niaz",
     metaDescription:
-      "Building contractor in Lahore for commercial, apartment and industrial construction: planning, site supervision, quality checks and MEP coordination.",
-    eyebrow: "Services · Commercial & Industrial",
-    title: "Building contractor in Lahore for commercial and apartment buildings",
+      "Building contractor in Lahore for apartment, residential and industrial building construction: planning, site supervision, quality checks and MEP coordination.",
+    eyebrow: "Services · Residential & Industrial",
+    title: "Building contractor in Lahore for apartment and residential buildings",
     accent: "planned and coordinated.",
     intro:
-      "As a building contractor in Lahore, we construct apartments, plazas, offices, bank branches and industrial buildings, which need careful planning, coordination between trades and clear records. We deliver them with site supervision, quality checks and practical resource planning.",
+      "As a building contractor in Lahore, we construct apartment buildings, houses and industrial buildings, which need careful planning, coordination between trades and clear records. We deliver them with site supervision, quality checks and practical resource planning.",
     image: building,
     imageAlt: "Engineers reviewing structural work on a building site",
     includes: [
@@ -325,7 +325,7 @@ export const services: ServicePage[] = [
     faqs: [
       {
         q: "What kinds of buildings do you work on?",
-        a: "Our selected projects include banking branches, a commercial plaza and an industrial warehouse. See the selected projects page for details.",
+        a: "Our selected projects include bank branch projects, a plaza and an industrial warehouse. See the selected projects page for details.",
       },
       {
         q: "Can you work from our consultant's drawings?",
@@ -402,8 +402,8 @@ export const services: ServicePage[] = [
         a: "Yes. Our architectural drawings service can prepare the new layout before work starts.",
       },
       {
-        q: "Do you handle commercial renovations?",
-        a: "Yes. Our selected projects include renovation and upgradation of bank branches and offices.",
+        q: "Do you renovate apartments and larger buildings?",
+        a: "Yes. We plan the work in phases after a survey. Our selected projects include renovation and upgradation of bank branches and offices.",
       },
     ],
     related: [
@@ -487,7 +487,7 @@ export const services: ServicePage[] = [
     title: "BOQ services in Lahore",
     accent: "for clear, comparable pricing.",
     intro:
-      "A bill of quantities (BOQ) lists every item of work with its quantity and unit, so contractors price the same scope and you can compare quotations fairly. We prepare BOQ services in Lahore for houses, apartments and commercial buildings, directly from your architectural and structural drawings.",
+      "A bill of quantities (BOQ) lists every item of work with its quantity and unit, so contractors price the same scope and you can compare quotations fairly. We prepare BOQ services in Lahore for houses and apartment buildings, directly from your architectural and structural drawings.",
     image: planning,
     imageAlt: "Construction planning documents and quantity sheets",
     includes: [
@@ -657,7 +657,7 @@ export const services: ServicePage[] = [
         a: "Small changes are usually possible. We explain the effect of a change on cost and time before it is made.",
       },
       {
-        q: "Is turnkey suitable for commercial buildings?",
+        q: "Is turnkey suitable for apartment buildings?",
         a: "Yes, depending on scope. Share your drawings or requirements and we will advise.",
       },
       {

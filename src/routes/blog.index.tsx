@@ -61,7 +61,7 @@ function BlogIndex() {
               className="group relative flex flex-col overflow-hidden border border-border bg-card"
             >
               {post.image ? (
-                <div className="aspect-[16/9] overflow-hidden">
+                <div className="aspect-[2/1] overflow-hidden">
                   <img
                     src={post.image}
                     alt={post.imageAlt ?? post.title}
@@ -71,7 +71,7 @@ function BlogIndex() {
                   />
                 </div>
               ) : (
-                <div className="flex aspect-[16/9] items-end bg-surface p-5">
+                <div className="flex aspect-[2/1] items-end bg-surface p-5">
                   <span className="eyebrow">{post.category}</span>
                 </div>
               )}

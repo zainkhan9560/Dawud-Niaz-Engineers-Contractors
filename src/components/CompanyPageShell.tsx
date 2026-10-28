@@ -18,7 +18,7 @@ export default function CompanyPageShell({
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <div className="h-[5.25rem] lg:h-[7.75rem]" aria-hidden="true" />
-      <main>
+      <main id="main-content" tabIndex={-1} className="outline-none">
         <section className="page-hero relative overflow-hidden bg-surface border-b border-border">
           <div className="hero-glow" aria-hidden="true" />
           <div className="relative mx-auto max-w-7xl px-5 py-14 md:py-20">
@@ -40,9 +40,17 @@ export default function CompanyPageShell({
           <p className="text-sm text-muted-foreground">
             126 J Gulberg III, Lahore · 0333 858 1087 · Info@Dawudniazassociates.com
           </p>
-          <Link to="/" className="text-sm text-gold">
-            Back to home ↑
-          </Link>
+          <div className="flex items-center gap-5 text-sm">
+            <Link to="/privacy" className="text-muted-foreground hover:text-gold">
+              Privacy
+            </Link>
+            <Link to="/terms" className="text-muted-foreground hover:text-gold">
+              Terms
+            </Link>
+            <Link to="/" className="text-gold">
+              Back to home ↑
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

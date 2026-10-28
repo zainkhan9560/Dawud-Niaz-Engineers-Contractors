@@ -61,7 +61,7 @@ function ServiceDetailPage() {
           src={s.image}
           alt={s.imageAlt}
           decoding="async"
-          className="aspect-[4/3] w-full border border-border object-cover"
+          className="aspect-[16/10] w-full max-h-[420px] border border-border object-cover"
         />
         <div>
           <h2 className="text-3xl md:text-4xl">What is included</h2>

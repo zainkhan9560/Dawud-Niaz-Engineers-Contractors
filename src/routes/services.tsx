@@ -28,7 +28,7 @@ const featured = [
   {
     title: "Architectural Drawings",
     slug: "architectural-drawings-lahore",
-    desc: "Architectural concepts, floor plans, elevations, working drawings, space planning and design coordination for houses, apartments and commercial buildings.",
+    desc: "Architectural concepts, floor plans, elevations, working drawings, space planning and design coordination for houses and apartment buildings.",
     img: architecture,
     alt: "Architectural drawings and design workspace",
   },
@@ -49,7 +49,7 @@ const featured = [
   {
     title: "Building Construction",
     slug: "building-construction-lahore",
-    desc: "Residential, apartment and commercial building execution with project coordination, site supervision, quality checks and practical resource planning.",
+    desc: "Residential and apartment building execution with project coordination, site supervision, quality checks and practical resource planning.",
     img: residential,
     alt: "Residential building construction example",
   },
@@ -68,7 +68,7 @@ const capabilities = [
   ],
   [
     "Design & Architecture",
-    "Architectural concepts, planning and layout, residential planning, commercial space planning, industrial layout coordination, working drawings, design coordination and material selection.",
+    "Architectural concepts, planning and layout, residential planning, industrial layout coordination, working drawings, design coordination and material selection.",
   ],
   [
     "Project Execution & Management",
@@ -79,8 +79,8 @@ const capabilities = [
     "Renovation, refurbishment, flooring, ceiling and finishing works, building improvements and coordinated interior and external works.",
   ],
   [
-    "Residential & Commercial Buildings",
-    "Planning and construction support for houses, villas, apartments, commercial buildings, offices and plazas.",
+    "Residential Buildings",
+    "Planning and construction support for houses, villas and apartment buildings.",
   ],
   [
     "Industrial Facilities",
@@ -107,7 +107,7 @@ function ServicesPage() {
             }`}
           >
             <div
-              className={`overflow-hidden ${i === 4 ? "aspect-[16/9] md:aspect-auto" : "aspect-[16/9]"}`}
+              className={`overflow-hidden ${i === 4 ? "aspect-[2/1] md:aspect-auto" : "aspect-[2/1]"}`}
             >
               <img
                 decoding="async"

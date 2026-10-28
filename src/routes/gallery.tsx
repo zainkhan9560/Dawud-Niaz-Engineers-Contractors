@@ -15,6 +15,11 @@ import i from "@/assets/architectural-design-example.webp";
 import r1 from "@/assets/project-building-structure.webp";
 import r2 from "@/assets/project-site-foundation.webp";
 import r3 from "@/assets/project-scaffolding-works.webp";
+import s1 from "@/assets/gallery-foundation-concrete-grid.webp";
+import s2 from "@/assets/gallery-grey-structure-house.webp";
+import s3 from "@/assets/gallery-brick-supply-site.webp";
+import s4 from "@/assets/gallery-facade-scaffolding-lane.webp";
+import s5 from "@/assets/gallery-jali-facade-scaffolding.webp";
 import m1 from "@/assets/structural-model-high-rise-frame.webp";
 import m2 from "@/assets/structural-model-multi-storey-frame.webp";
 import m3 from "@/assets/structural-model-arched-steel-shed.webp";
@@ -37,10 +42,61 @@ export const Route = createFileRoute("/gallery")({
     }),
   component: GalleryPage,
 });
-const items: { title: string; category: string; img: string; real?: boolean; pos?: string }[] = [
+const items: {
+  title: string;
+  category: string;
+  img: string;
+  real?: boolean;
+  pos?: string;
+  detail?: string;
+}[] = [
   { title: "Building Structure", category: "Our Site", img: r1, real: true, pos: "50% 45%" },
   { title: "Site Foundation Works", category: "Our Site", img: r2, real: true, pos: "50% 62%" },
   { title: "Scaffolding Works", category: "Our Site", img: r3, real: true, pos: "50% 55%" },
+  {
+    title: "Foundation Concrete Grid",
+    category: "Our Site",
+    img: s1,
+    real: true,
+    pos: "50% 52%",
+    detail:
+      "Concrete placed in a grid around brick-lined panels, with a pump keeping the excavation free of water.",
+  },
+  {
+    title: "Grey Structure Stage",
+    category: "Our Site",
+    img: s2,
+    real: true,
+    pos: "50% 30%",
+    detail:
+      "Brick walls up on two floors with concrete lintels over the openings, before plaster and finishing.",
+  },
+  {
+    title: "Brick Supply on Site",
+    category: "Our Site",
+    img: s3,
+    real: true,
+    pos: "50% 45%",
+    detail: "Fired clay bricks stacked on firm ground, ready for masonry work.",
+  },
+  {
+    title: "Facade Scaffolding in the Lane",
+    category: "Our Site",
+    img: s4,
+    real: true,
+    pos: "50% 50%",
+    detail:
+      "Scaffolding along a multi-storey building in a narrow lane, with access planned around neighbours.",
+  },
+  {
+    title: "Jali Facade Work",
+    category: "Our Site",
+    img: s5,
+    real: true,
+    pos: "50% 62%",
+    detail:
+      "A decorative jali panel and concrete bands on a facade, protected while scaffolding is in place.",
+  },
   { title: "Building Construction", category: "Construction", img: a },
   { title: "Architectural Planning", category: "Architecture", img: b },
   { title: "Structural Site Review", category: "Structural", img: c },
@@ -105,7 +161,7 @@ function GalleryPage() {
               src={item.img}
               alt={
                 item.real
-                  ? `${item.title}: photograph from a Dawud Niaz Associates Engineers and Contractors site`
+                  ? `${item.title}: ${item.detail ?? "photograph from a Dawud Niaz Associates Engineers and Contractors site"}`
                   : `${item.title} — illustrative construction portfolio visual`
               }
               loading="lazy"
@@ -118,6 +174,9 @@ function GalleryPage() {
                 {item.category}
               </span>
               <h2 className="mt-1 text-2xl">{item.title}</h2>
+              {item.detail && (
+                <p className="mt-1 line-clamp-2 text-sm leading-snug text-white/80">{item.detail}</p>
+              )}
             </figcaption>
           </figure>
         ))}
