@@ -15,6 +15,12 @@ import i from "@/assets/architectural-design-example.webp";
 import r1 from "@/assets/project-building-structure.webp";
 import r2 from "@/assets/project-site-foundation.webp";
 import r3 from "@/assets/project-scaffolding-works.webp";
+import m1 from "@/assets/structural-model-high-rise-frame.webp";
+import m2 from "@/assets/structural-model-multi-storey-frame.webp";
+import m3 from "@/assets/structural-model-arched-steel-shed.webp";
+import m4 from "@/assets/structural-model-restrained-panel.webp";
+import m5 from "@/assets/structural-model-low-rise-frame.webp";
+import m6 from "@/assets/structural-model-ten-storey-frame.webp";
 export const Route = createFileRoute("/gallery")({
   head: () =>
     pageHead({
@@ -45,6 +51,38 @@ const items: { title: string; category: string; img: string; real?: boolean; pos
   { title: "Construction Site Coordination", category: "Construction", img: h },
   { title: "Architectural Design", category: "Architecture", img: i },
 ];
+const models: { title: string; detail: string; img: string }[] = [
+  {
+    title: "High-Rise Frame Model",
+    detail: "3-D structural model of a stepped multi-storey RC frame",
+    img: m1,
+  },
+  {
+    title: "Multi-Storey Frame Model",
+    detail: "3-D model with columns, beams and floor slabs",
+    img: m2,
+  },
+  {
+    title: "Ten-Storey Frame Model",
+    detail: "3-D frame model with roof-level service blocks",
+    img: m6,
+  },
+  {
+    title: "Low-Rise Frame Model",
+    detail: "3-D model of a low-rise building frame with stair cores",
+    img: m5,
+  },
+  {
+    title: "Arched Steel Shed Model",
+    detail: "3-D model of a steel frame with curved rafters",
+    img: m3,
+  },
+  {
+    title: "Restrained Panel Model",
+    detail: "3-D structural model showing support restraints",
+    img: m4,
+  },
+];
 function GalleryPage() {
   return (
     <CompanyPageShell
@@ -60,7 +98,7 @@ function GalleryPage() {
         {items.map((item, i) => (
           <figure
             key={item.title}
-            className={`group relative overflow-hidden bg-surface ${i === 0 || i === 4 ? "lg:row-span-2 lg:row-span-1" : ""}`}
+            className={`group relative overflow-hidden bg-surface ${i === 0 || i === 4 ? "sm:row-span-2 lg:row-span-1" : ""}`}
           >
             <img
               decoding="async"
@@ -84,6 +122,33 @@ function GalleryPage() {
           </figure>
         ))}
       </div>
+      <section className="mt-16" aria-labelledby="gallery-models">
+        <p className="eyebrow mb-3">Structural analysis</p>
+        <h2 id="gallery-models" className="text-3xl md:text-4xl">
+          Structural analysis models
+        </h2>
+        <p className="mt-3 max-w-3xl text-muted-foreground">
+          3-D structural analysis models from our engineering work, showing frames, floors and
+          supports.
+        </p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {models.map((m) => (
+            <figure key={m.title} className="overflow-hidden border border-border bg-black">
+              <img
+                src={m.img}
+                alt={`${m.title}: ${m.detail}`}
+                loading="lazy"
+                decoding="async"
+                className="aspect-video w-full object-contain"
+              />
+              <figcaption className="bg-card p-4">
+                <h3 className="text-lg">{m.title}</h3>
+                <p className="mt-1 text-xs text-muted-foreground">{m.detail}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
       <section className="mt-16" aria-labelledby="gallery-videos">
         <p className="eyebrow mb-3">Site videos</p>
         <h2 id="gallery-videos" className="text-3xl md:text-4xl">

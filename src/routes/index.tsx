@@ -893,6 +893,9 @@ function Index() {
                 key={n}
                 name={n}
                 required
+                aria-label={p}
+                autoComplete={n === "name" ? "name" : "tel"}
+                type={n === "phone" ? "tel" : "text"}
                 placeholder={p}
                 className="w-full border-b border-input bg-transparent py-3 outline-none transition-colors placeholder:text-muted-foreground focus:border-gold"
               />
@@ -900,11 +903,15 @@ function Index() {
             <textarea
               name="message"
               required
+              aria-label="Tell us about your project"
               rows={4}
               placeholder="Tell us about your project"
               className="w-full resize-none border-b border-input bg-transparent py-3 outline-none placeholder:text-muted-foreground focus:border-gold"
             />
-            <button className="w-full bg-gold-gradient py-4 font-semibold text-primary-foreground shadow-gold transition-transform hover:-translate-y-0.5">
+            <button
+              type="submit"
+              className="w-full bg-gold-gradient py-4 font-semibold text-primary-foreground shadow-gold transition-transform hover:-translate-y-0.5"
+            >
               Send Enquiry
             </button>
           </form>
